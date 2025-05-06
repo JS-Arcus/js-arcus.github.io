@@ -35,6 +35,7 @@ Wenn du einen Link auf der Webseite verknüpfen willst, musst du einfach den Tei
 01. Januar 2000
 Mein Text...
 [leiterteam.html#name_des_neuen_mitglieds | Hier geht's zum neuen Teammitglied]
+===
 ```
 Tipp: Du kannst bei bestimmten Seiten mit einem # angeben, wo auf der Seite der Benutzer landen soll. Das geht auf folgenden Seiten:
 - leiterteam.html
@@ -43,6 +44,7 @@ Wenn du eine andere Seite verlinken willst dann musst du einfach die ganze URL v
 01. Januar 2000
 Mach doch den GS!
 Melde dich unter den folgenden Link an: [https://hitobito.jemk.ch/groups/1/events/90 | hitobito.jemk.ch]
+===
 ```
 ### Hervorhebungen
 Du kannst Texte **fett** oder *kursiv* machen, indem du sie entweder in Sternchen (*) oder zwei Tilden (~) einklammerst.
@@ -51,4 +53,5 @@ Du kannst Texte **fett** oder *kursiv* machen, indem du sie entweder in Sternche
 Mein Text...
 *Ein fetter Text*
 ~Ein kursiver Text~
+===
 ```

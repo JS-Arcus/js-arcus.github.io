@@ -2,6 +2,9 @@
 - Öffne den gewünschten Feed (z.B. "aktuelles")
 - Schreib das Datum zu Oberst hin und trenne es mit "===" vom nächsten Beitrag
 - Jetzt kannst du unter das Datum den Inhalt des Beitrags schreiben.
+- Wenn du fertig bist, drücke oben rechts auf "Commit changes", und bestätige dies nochmals.
+  ![image](https://github.com/user-attachments/assets/72389bec-7154-4682-a800-05af1d5ef101)
+
 
 ## Erweiterte Formatierung des Posts
 Im Inhalt des Beitrags kannst du Bilder, Links und spezielle Hervorhebungen einfügen.

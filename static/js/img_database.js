@@ -9,7 +9,7 @@ async function save_password() {
     const data = { password: hashedPassword, expiresAt: expirationTime };
     localStorage.setItem("saved_password", JSON.stringify(data));
 
-    load_gallery()
+    load_gallery("")
 }
 
 async function decrypt_image(path, key, outputId) {
@@ -44,8 +44,27 @@ async function decrypt_image(path, key, outputId) {
     document.getElementById(outputId).src = URL.createObjectURL(blob);
 }
 
-function load_gallery() {
+
+let parent_path = null
+function load_gallery(path) {
     const savedData = JSON.parse(localStorage.getItem("saved_password"));
+
+    if (!(path.endsWith("/"))){
+        path = path + "/"
+    }
+    
+
+    if (path == "/"){
+        document.getElementById("gallery-back").style.display="none"
+    }
+    else {
+        document.getElementById("gallery-back").style.display="block"
+        parent_path = path.split("/").slice(0,path.split("/").length-2).join("/")
+        if (parent_path.startsWith("/")){
+            parent_path = parent_path.substr(1,parent_path.length)
+        }
+        document.getElementById("gallery-back").onclick=()=>load_gallery(parent_path)
+    }
 
     if (savedData) {
         if (Date.now() > savedData.expiresAt) {
@@ -70,34 +89,64 @@ function load_gallery() {
 
                 const keyBytes = new Uint8Array(password.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
 
+                try {
+                    const cryptoKey = await crypto.subtle.importKey(
+                        "raw",
+                        keyBytes,
+                        "AES-GCM",
+                        false,
+                        ["decrypt"]
+                    );
 
-                const cryptoKey = await crypto.subtle.importKey(
-                    "raw",
-                    keyBytes,
-                    "AES-GCM",
-                    false,
-                    ["decrypt"]
-                );
+                    const decrypted = await crypto.subtle.decrypt(
+                        {
+                            name: "AES-GCM",
+                            iv: iv,
+                            tagLength: 128
+                        },
+                        cryptoKey,
+                        new Uint8Array([...ciphertext, ...tag])
+                    );
 
-                const decrypted = await crypto.subtle.decrypt(
-                    {
-                        name: "AES-GCM",
-                        iv: iv,
-                        tagLength: 128
-                    },
-                    cryptoKey,
-                    new Uint8Array([...ciphertext, ...tag])
-                );
+                    const data = JSON.parse(new TextDecoder().decode(decrypted));
+                    const gallery = document.getElementById("gallery");
+                    gallery.innerHTML = ""; // Clear existing images
 
-                
-                const data = JSON.parse(new TextDecoder().decode(decrypted));
-                console.log(data)
-                const gallery = document.getElementById("gallery");
-                gallery.innerHTML = ""; // Clear existing images
-                data.forEach(year => {
-                    console.log(year);
-                });
+                    let struct = data["structure"]
+
+                    path.split("/").forEach(subpath => {
+                        if (subpath != "") {
+                            struct = struct[subpath]
+                        }
+                    });
+                    
+                    Object.keys(struct).forEach(element => {
+                        if (typeof struct[element] == "object"){
+                            let obj = document.createElement("button")
+                            obj.textContent = `${element}`
+                            obj.id = `album-button-${element}`
+                            obj.onclick = () => load_gallery(`${path}${element}`)
+                            obj.className = "album-button"
+                            document.getElementById("gallery").appendChild(obj)
+                        }
+                        else {
+                            let obj = document.createElement("img")
+                            obj.id = `photo-${element}`
+                            document.getElementById("gallery").appendChild(obj)
+                            decrypt_image("https://raw.githubusercontent.com/JS-Arcus/js-arcus.github.io/refs/heads/main/static/image_database/"+struct[element].replaceAll(" ","%20"), password, `photo-${element}`)
+                        }
+                    });
+
+
+                } catch (error) {
+                    if (error.name === "OperationError") {
+                        lock_gallery()
+                    } else {
+                        console.error("An error occurred:", error);
+                    }
+                }
             })
+            .catch(error => console.error("Failed to fetch or process the data:", error));
     }
 }
 
@@ -111,8 +160,7 @@ function lock_gallery() {
 }
 
 function init() {
-    load_gallery()
-    decrypt_image("https://raw.githubusercontent.com/JS-Arcus/js-arcus.github.io/refs/heads/main/static/image_database/gallery/2022/SoLa 22/1.jpg", password, "i1")
+    load_gallery("")
 }
 
 window.onload = init

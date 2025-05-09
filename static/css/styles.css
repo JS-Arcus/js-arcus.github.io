@@ -244,6 +244,7 @@ input {
     color: black;
 }
 
+
 button {
     height: auto;
     width: auto;
@@ -260,7 +261,50 @@ button:hover {
     color: #01378b;
 }
 
+#gallery button {
+    width: 40%;
+    margin-right: 5% !important;
+    margin-bottom: 5% !important;
+}
+
+#gallery {
+    display:block;
+}
+
+#gallery img {
+    height: 30vh;
+    margin-right: auto !important;
+    margin-bottom: auto !important;
+}
+
+#gallery_back {
+    margin-right: 2vw
+}
+
+#gallery_options {
+    padding-left: 4vw !important;
+    display: flex;
+    flex-direction: row;
+}
+
+#gallery_options button {
+    margin-right: 1vw !important;
+    margin-left: 0 !important;
+}
+
 @media (max-width: 768px) {
+    #gallery_options button {
+        padding: 2vh;
+    }
+    
+    #gallery button {
+        padding: 3vh;
+        width: 40%;
+        height: 10vh;
+        margin-right: 5% !important;
+        margin-bottom: 5% !important;
+    }
+
     input {
         width: 90%;
     }

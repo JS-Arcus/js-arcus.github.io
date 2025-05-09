@@ -242,6 +242,7 @@ input {
     border-radius: 1vw;
     background-color: #eee;
     color: black;
+    margin-bottom: 1vh;
 }
 
 
@@ -262,20 +263,50 @@ button:hover {
 }
 
 #gallery button {
-    width: 40%;
-    margin-right: 5% !important;
-    margin-bottom: 5% !important;
+    width: 100%;
+    margin: 0 !important;
+    margin-bottom: 1em !important;
 }
 
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 9999;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#big_image {
+    border-radius: 15px;
+}
+
+
 #gallery {
-    display:block;
+    padding: 0 !important;
+    width: 90vw;
+    margin: 0 auto !important; /* Center the gallery */
+    column-count: 3;
+    column-gap: 1vw;
 }
 
 #gallery img {
-    height: 30vh;
-    margin-right: auto !important;
-    margin-bottom: auto !important;
+    margin-bottom: 1em !important;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* or adjust this to match your images */
+    object-fit: cover; /* Ensure images fill the container */
+    background: #ccc; /* Optional: background color before the image is loaded */
 }
+
 
 #gallery_back {
     margin-right: 2vw
@@ -293,13 +324,17 @@ button:hover {
 }
 
 @media (max-width: 768px) {
+    #gallery {
+        column-count: 1;
+    }
+
     #gallery_options button {
         padding: 2vh;
     }
-    
+
     #gallery button {
         padding: 3vh;
-        width: 40%;
+        width: 100%;
         height: 10vh;
         margin-right: 5% !important;
         margin-bottom: 5% !important;
@@ -307,6 +342,7 @@ button:hover {
 
     input {
         width: 90%;
+        padding: 3%;
     }
 
     #info {

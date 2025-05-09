@@ -61,7 +61,7 @@ function load_gallery() {
         document.getElementsByClassName("blocker")[0].hidden=true
         document.getElementById("gallery_container").hidden=false
 
-        fetch("static/image_database/database.json")
+        fetch("static/image_database/database.bin")
             .then(response => response.arrayBuffer())
             .then(async encryptedData => {
             const iv = new Uint8Array(encryptedData.slice(0, 12));

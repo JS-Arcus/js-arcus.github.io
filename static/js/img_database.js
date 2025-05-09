@@ -8,7 +8,7 @@ async function save_password() {
         .join('');
     const data = { password: hashedPassword, expiresAt: expirationTime };
     localStorage.setItem("saved_password", JSON.stringify(data));
-    
+
     load_gallery()
 }
 
@@ -20,7 +20,7 @@ async function decrypt_image(path, key, outputId) {
     const tag = encrypted.slice(12, 28);
     const ciphertext = encrypted.slice(28);
 
-    const keyBytes = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
+    const keyBytes = new Uint8Array(key.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
 
     const cryptoKey = await crypto.subtle.importKey(
         "raw",
@@ -58,59 +58,61 @@ function load_gallery() {
     }
 
     if (password) {
-        document.getElementsByClassName("blocker")[0].hidden=true
-        document.getElementById("gallery_container").hidden=false
+        document.getElementsByClassName("blocker")[0].hidden = true
+        document.getElementById("gallery_container").hidden = false
 
-        fetch("static/image_database/database.bin")
+        fetch("https://raw.githubusercontent.com/JS-Arcus/js-arcus.github.io/refs/heads/main/static/image_database/database.bin")
             .then(response => response.arrayBuffer())
             .then(async encryptedData => {
-            const iv = new Uint8Array(encryptedData.slice(0, 12));
-            const tag = new Uint8Array(encryptedData.slice(12, 28));
-            const ciphertext = new Uint8Array(encryptedData.slice(28));
+                const iv = new Uint8Array(encryptedData.slice(0, 12));
+                const tag = new Uint8Array(encryptedData.slice(12, 28));
+                const ciphertext = new Uint8Array(encryptedData.slice(28));
 
-            const keyBytes = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(password));
+                const keyBytes = new Uint8Array(password.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
 
-            const cryptoKey = await crypto.subtle.importKey(
-                "raw",
-                keyBytes,
-                "AES-GCM",
-                false,
-                ["decrypt"]
-            );
 
-            const decrypted = await crypto.subtle.decrypt(
-                {
-                name: "AES-GCM",
-                iv: iv,
-                tagLength: 128
-                },
-                cryptoKey,
-                new Uint8Array([...ciphertext, ...tag])
-            );
+                const cryptoKey = await crypto.subtle.importKey(
+                    "raw",
+                    keyBytes,
+                    "AES-GCM",
+                    false,
+                    ["decrypt"]
+                );
 
-            const years = JSON.parse(new TextDecoder().decode(decrypted));
+                const decrypted = await crypto.subtle.decrypt(
+                    {
+                        name: "AES-GCM",
+                        iv: iv,
+                        tagLength: 128
+                    },
+                    cryptoKey,
+                    new Uint8Array([...ciphertext, ...tag])
+                );
 
-            const gallery = document.getElementById("gallery");
-            gallery.innerHTML = ""; // Clear existing images
-            years.forEach(year => {
-                console.log(year);
-            });
+                
+                const data = JSON.parse(new TextDecoder().decode(decrypted));
+                console.log(data)
+                const gallery = document.getElementById("gallery");
+                gallery.innerHTML = ""; // Clear existing images
+                data.forEach(year => {
+                    console.log(year);
+                });
             })
-            .catch(error => console.error("Error loading or decrypting image database:", error));
     }
 }
 
-function lock_gallery(){
-    password=""
-    document.getElementsByClassName("blocker")[0].hidden=false
-    document.getElementById("gallery_container").hidden=true
+function lock_gallery() {
+    password = ""
+    document.getElementsByClassName("blocker")[0].hidden = false
+    document.getElementById("gallery_container").hidden = true
     document.getElementById("password_input").value = ""
     localStorage.removeItem("saved_password")
     document.getElementById("gallery").innerHTML = ""
 }
 
-function init(){
+function init() {
     load_gallery()
+    decrypt_image("https://raw.githubusercontent.com/JS-Arcus/js-arcus.github.io/refs/heads/main/static/image_database/gallery/2022/SoLa 22/1.jpg", password, "i1")
 }
 
 window.onload = init

@@ -116,7 +116,14 @@ img#background {
     z-index: -1;
 }
 
-
+.horizontal_container {
+    padding-left: 3vw !important;
+    flex-direction: row !important;
+    justify-content: left !important;
+    align-items: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 
 strong {
     color: #01378b;
@@ -221,8 +228,43 @@ img {
     padding-bottom: 0;
 }
 
+.horizontal_container * {
+    margin-left: 0.5vw !important;
+    margin-right: 0.5vw !important;
+}
+
+input {
+    height: auto;
+    width: 40%;
+    padding: 1vw;
+    border: #01378b;
+    border-width: 5px;
+    border-radius: 1vw;
+    background-color: #eee;
+    color: black;
+}
+
+button {
+    height: auto;
+    width: auto;
+    padding: 1vw;
+    border: #01378b;
+    border-width: 5px;
+    border-radius: 1vw;
+    background-color: #eee;
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    color: #01378b;
+}
 
 @media (max-width: 768px) {
+    input {
+        width: 90%;
+    }
+
     #info {
         flex-direction: column;
     }

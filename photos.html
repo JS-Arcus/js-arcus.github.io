@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fotos - Jungschar Arcus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/favicon.ico">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <script src="static/js/script.js"></script>
+    <img id="background" src="static/img/wallpapers/index.jpg">
+    <div id="header">
+        <img id="logo" onclick="logo_clicked()" src="static/img/js_arcus_logo.png">
+        <div id="navbar">
+            <div class="navbar_item" onclick="redir('index.html')" id="index_item">
+                <img onclick="redir('index.html')" class="ui_icon" src="static/img/ui_icon/home.svg">
+                <span onclick="redir('index.html')" class="navbar_text">Start</span>
+            </div>
+            <div class="navbar_item" onclick="redir('current.html')">
+                <img onclick="redir('current.html')" class="ui_icon" src="static/img/ui_icon/current.svg">
+                <span onclick="redir('current.html')" class="navbar_text">Aktuelles</span>
+            </div>
+            <div class="navbar_item" onclick="redir('program.html')">
+                <img onclick="redir('program.html')" class="ui_icon" src="static/img/ui_icon/program.svg">
+                <span onclick="redir('program.html')" class="navbar_text">Programm</span>
+            </div>
+            <div class="navbar_item" onclick="redir('about.html')">
+                <img onclick="redir('about.html')" class="ui_icon" src="static/img/ui_icon/what.svg">
+                <span onclick="redir('about.html')" class="navbar_text">Über uns</span>
+            </div>
+            <div class="navbar_item" onclick="redir('photos.html')">
+                <img onclick="redir('photos.html')" class="ui_icon" src="static/img/ui_icon/photos.svg">
+                <span onclick="redir('photos.html')" class="navbar_text">Fotos</span>
+            </div>
+            <div class="navbar_item" onclick="redir('team.html')">
+                <img onclick="redir('team.html')" class="ui_icon" src="static/img/ui_icon/team.svg">
+                <span onclick="redir('team.html')" class="navbar_text">Leiterteam</span>
+            </div>
+            <div class="navbar_item" onclick="redir('contact.html')">
+                <img onclick="redir('contact.html')" class="ui_icon" src="static/img/ui_icon/contact.svg">
+                <span onclick="redir('contact.html')" class="navbar_text">Kontakt</span>
+            </div>            
+            <div class="navbar_item" onclick="redir('zuckerwatte.html')">
+                <img onclick="redir('zuckerwatte.html')" class="ui_icon" src="static/img/ui_icon/zuckerwatte.svg">
+                <span onclick="redir('zuckerwatte.html')" class="navbar_text">Zuckerwattemaschine Mieten</span>
+            </div>
+        </div>
+
+    </div>
+    <div id="content">
+        <script src="static/js/img_database.js"></script>
+<p class="spaceholder_medium"></p>
+<h1>Fotos</h1>
+<p class="spaceholder_small"></p>
+<div class="blocker">
+    <p>Aus Datenschutzgründen sind die Fotos passwortgeschützt. Bitte gib das Passwort unten ein.</p>
+    <div class="horizontal_container">
+        <input id="password_input" class="password" type="password" placeholder="Foto-Passwort eingeben"
+            onkeypress="if(event.key === 'Enter') save_password()">
+        <button onclick="save_password()">Entsperren</button>
+    </div>
+</div>
+<div id="gallery_container" hidden>
+    <button onclick="lock_gallery()">Sperren</button>
+    <div class="gallery" id="gallery">
+        
+    </div>
+</div>
+        <div id="footer">
+            <div class="line" style="width:92vw;"></div>
+            <p>Zuletzt aktualisiert am 05. Mai 2025</p>
+            <div id="info">
+                <div id="adress">
+                    <strong>Unsere Adresse</strong>
+                    <p>Bernstrasse 68</p>
+                    <p>3018 Bern - Bümpliz</p>
+                    <br>
+                    <a href="https://www.google.ch/maps/place/Bernstrasse+68,+3018+Bern/@46.9418986,7.3916574,17z/data=!3m1!4b1!4m5!3m4!1s0x478e3918a9391751:0xf4ebbaf73a31fa4!8m2!3d46.9418986!4d7.3938461">Google maps</a>
+                </div>
+                <div id="hello">
+                    <strong>Hey du!</strong>
+                    <p>Wir freuen uns auf Deinen Besuch am nächsten Jungscharnachmittag… 😉</p>
+                    <br>
+                    <i>Jungschar Arcus</i>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

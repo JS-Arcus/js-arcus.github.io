@@ -291,7 +291,7 @@ h2 {
 }
 
 .leiter_bild {
-    width: 50%;
+    height: 50vh;
 }
 
 .leiter_bild img {
@@ -388,6 +388,7 @@ h2 {
     }
 
     .leiter_bild {
+        height: auto;
         width: 100%;
         display: flex;
         flex-direction: row;

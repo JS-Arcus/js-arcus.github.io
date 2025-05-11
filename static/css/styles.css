@@ -262,20 +262,56 @@ button:hover {
     color: #01378b;
 }
 
+.leiter_liste {
+    margin-bottom: 0 !important;
+}
+
 #gallery button {
     width: 100%;
     margin: 0 !important;
     margin-bottom: 1em !important;
 }
 
-#content a {
-    color: #01378b ;
+#content p a {
+    color: #01378b;
     margin: 0 !important;
 }
 
 h2 {
     color: #01378b;
     margin-bottom: 2vh !important;
+}
+
+.leiter_info p {
+    margin-left: 0 !important;
+}
+
+.leiter strong {
+    margin: 0 !important;
+}
+
+
+.leiter_bild img {
+    border-radius: 1vw;
+}
+
+.leiter_info {
+    padding-top: 4vh !important;
+    align-items: center;
+    justify-content: left;
+}
+
+.leiter_horizontal {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex;
+    flex-direction: row;
+}
+
+.leiter_horizontal * {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 #overlay {
@@ -303,7 +339,8 @@ h2 {
 #gallery {
     padding: 0 !important;
     width: 90vw;
-    margin: 0 auto !important; /* Center the gallery */
+    margin: 0 auto !important;
+    /* Center the gallery */
     column-count: 3;
     column-gap: 1vw;
 }
@@ -312,9 +349,12 @@ h2 {
     margin-bottom: 1em !important;
     display: block;
     width: 100%;
-    aspect-ratio: 16 / 9; /* or adjust this to match your images */
-    object-fit: cover; /* Ensure images fill the container */
-    background: #ccc; /* Optional: background color before the image is loaded */
+    aspect-ratio: 16 / 9;
+    /* or adjust this to match your images */
+    object-fit: cover;
+    /* Ensure images fill the container */
+    background: #ccc;
+    /* Optional: background color before the image is loaded */
 }
 
 
@@ -333,7 +373,36 @@ h2 {
     margin-left: 0 !important;
 }
 
+.leiter_info span {
+    margin: 0 !important;
+}
+
+
 @media (max-width: 768px) {
+    .leiter_info p {
+        margin-left: 4vw !important;
+    }
+
+    .leiter_bild {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 1vh !important;
+    }
+
+    .leiter_horizontal {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .leiter_bild img {
+        width: 95%;
+    }
+
     #gallery {
         column-count: 1;
     }

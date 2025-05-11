@@ -71,6 +71,25 @@ async function create_person(id) {
     }
 }
 
+async function waitForElement(id, timeout = 5000) {
+    return new Promise((resolve, reject) => {
+        const intervalTime = 100;
+        let elapsed = 0;
+
+        const interval = setInterval(() => {
+            const el = document.getElementById(id);
+            if (el) {
+                clearInterval(interval);
+                resolve(el);
+            } else if (elapsed >= timeout) {
+                clearInterval(interval);
+                reject(new Error(`Element with ID "${id}" not found after ${timeout}ms`));
+            }
+            elapsed += intervalTime;
+        }, intervalTime);
+    });
+}
+
 async function load_people(scroll_to) {
     const response = await fetch(api_base + "liste.txt");
     if (!response.ok) {
@@ -83,12 +102,13 @@ async function load_people(scroll_to) {
             create_person(person)
         }
     });
-
-    document.getElementById(scroll_to).scrollIntoView({ behavior: "smooth" })
+    if (await waitForElement(scroll_to)) {
+        document.getElementById(scroll_to).scrollIntoView({ behavior: "smooth" })
+    }
 }
 
 async function init() {
-    load_people(document.location.href.split("#")[1]||"")
+    load_people(document.location.href.split("#")[1] || "")
 }
 
 window.onload = init

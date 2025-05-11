@@ -290,10 +290,13 @@ h2 {
     margin: 0 !important;
 }
 
+.leiter_bild {
+    width: 50%;
+}
 
 .leiter_bild img {
+    width: 80%;
     border-radius: 1vw;
-    width: 50%
 }
 
 .leiter_info {

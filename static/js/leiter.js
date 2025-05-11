@@ -90,6 +90,11 @@ async function waitForElement(id, timeout = 5000) {
     });
 }
 
+function align() {
+    document.getElementById("header").scrollIntoView()
+}
+setInterval(align, 500)
+
 async function load_people(scroll_to) {
     const response = await fetch(api_base + "liste.txt");
     if (!response.ok) {

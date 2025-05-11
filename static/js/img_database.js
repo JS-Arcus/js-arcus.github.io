@@ -251,6 +251,11 @@ async function waitForElement(id, timeout = 5000) {
     });
 }
 
+function align() {
+    document.getElementById("header").scrollIntoView()
+}
+setInterval(align, 500)
+
 async function init() {
     const params = new URLSearchParams(window.location.search);
     const galleryId = params.get("p");
@@ -261,7 +266,6 @@ async function init() {
     try {
         const targetElement = await waitForElement(imageId);
         targetElement.scrollIntoView({ behavior: "smooth" });
-        document.getElementById("header").scrollIntoView()
         targetElement.onload = () => targetElement.click()
     } catch (err) {
         console.warn(err.message);

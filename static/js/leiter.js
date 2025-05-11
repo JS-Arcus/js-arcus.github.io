@@ -12,6 +12,7 @@ async function create_person(id) {
         const data = text.split("\n");
 
         const container = document.createElement("div");
+        container.id = id
         container.className = "leiter";
 
         const header = document.createElement("h2");
@@ -70,22 +71,24 @@ async function create_person(id) {
     }
 }
 
-async function load_people() {
+async function load_people(scroll_to) {
     const response = await fetch(api_base + "liste.txt");
     if (!response.ok) {
         throw new Error("Network response was not ok");
     }
     text = await response.text()
 
-    text.split("\n").forEach(person => {
+    await text.split("\n").forEach(person => {
         if (!(person == "")) {
             create_person(person)
         }
     });
+
+    document.getElementById(scroll_to).scrollIntoView({ behavior: "smooth" })
 }
 
 async function init() {
-    load_people()
+    load_people(document.location.href.split("#")[1]||"")
 }
 
 window.onload = init

@@ -26,6 +26,7 @@ const observer = new IntersectionObserver((entries, obs) => {
 
 
 async function save_password() {
+    console.log("Saved")
     let password = document.getElementById("password_input").value;
     const expirationTime = Date.now() + 2 * 60 * 60 * 1000; // 2 Hours
     const hashedPassword = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(password))))
@@ -89,7 +90,8 @@ let cancel = false
 let interval = null
 
 let parent_path = null
-function load_gallery(path) {
+async function load_gallery(path) {
+    console.log(path)
     clearInterval(interval)
     const thisLoadId = ++currentGalleryLoadId; // Increment to invalidate previous calls
     const savedData = JSON.parse(localStorage.getItem("saved_password"));
@@ -112,10 +114,13 @@ function load_gallery(path) {
     }
 
     if (savedData) {
+        console.log("password found")
         if (Date.now() > savedData.expiresAt) {
+            console.log("password expired")
             localStorage.removeItem("saved_password");
             password = "";
         } else {
+            console.log("password valid")
             document.getElementById("password_input").value = savedData.password;
             password = savedData.password;
         }
@@ -195,6 +200,8 @@ function load_gallery(path) {
                             obj.onclick = () => {
                                 document.getElementById("overlay").style.display = "flex"
                                 document.getElementById("big_image").src = document.getElementById(`photo-${element}`).src
+                                let newUrl = `${window.location.pathname}?p=${path}&i=photo-${element}`;
+                                history.pushState(null, "", newUrl);
                             }
                             gallery.appendChild(obj);
                             observer.observe(obj);
@@ -225,8 +232,41 @@ function lock_gallery() {
     document.getElementById("gallery").innerHTML = ""
 }
 
-function init() {
-    load_gallery("")
+async function waitForElement(id, timeout = 5000) {
+    return new Promise((resolve, reject) => {
+        const intervalTime = 100;
+        let elapsed = 0;
+
+        const interval = setInterval(() => {
+            const el = document.getElementById(id);
+            if (el) {
+                clearInterval(interval);
+                resolve(el);
+            } else if (elapsed >= timeout) {
+                clearInterval(interval);
+                reject(new Error(`Element with ID "${id}" not found after ${timeout}ms`));
+            }
+            elapsed += intervalTime;
+        }, intervalTime);
+    });
 }
+
+async function init() {
+    const params = new URLSearchParams(window.location.search);
+    const galleryId = params.get("p");
+    const imageId = params.get("i") || "header";
+
+    await load_gallery(galleryId || "");
+
+    try {
+        const targetElement = await waitForElement(imageId);
+        targetElement.scrollIntoView({ behavior: "smooth" });
+        targetElement.onload = () => targetElement.click()
+    } catch (err) {
+        console.warn(err.message);
+    }
+}
+
+
 
 window.onload = init

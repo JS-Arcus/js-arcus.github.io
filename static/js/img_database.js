@@ -261,6 +261,7 @@ async function init() {
     try {
         const targetElement = await waitForElement(imageId);
         targetElement.scrollIntoView({ behavior: "smooth" });
+        document.getElementById("header").scrollIntoView()
         targetElement.onload = () => targetElement.click()
     } catch (err) {
         console.warn(err.message);

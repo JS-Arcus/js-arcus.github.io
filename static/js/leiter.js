@@ -103,7 +103,8 @@ async function load_people(scroll_to) {
         }
     });
     if (await waitForElement(scroll_to)) {
-        document.getElementById(scroll_to).scrollIntoView({ behavior: "smooth" })
+        setTimeout(document.getElementById(scroll_to).scrollIntoView({ behavior: "smooth" }),500)
+        document.getElementById("header").scrollIntoView()
     }
 }
 

@@ -292,7 +292,7 @@ function next_image() {
     }
 }
 
-function previous_image() {
+function prev_image() {
     const params = new URLSearchParams(window.location.search);
     const galleryId = params.get("p") || "";
     const currentImageId = params.get("i") || "header";

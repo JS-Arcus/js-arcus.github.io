@@ -267,6 +267,73 @@ function lock_gallery() {
     document.getElementById("gallery").innerHTML = ""
 }
 
+function next_image() {
+    const params = new URLSearchParams(window.location.search);
+    const galleryId = params.get("p") || "";
+    const currentImageId = params.get("i") || "header";
+    const gallery = document.getElementById("gallery");
+    const images = Array.from(gallery.querySelectorAll("img")).filter(img => img.id.startsWith("photo-"));
+    const currentIndex = images.findIndex(img => img.id === currentImageId);
+    if (currentIndex !== -1) {
+        const nextIndex = (currentIndex + 1) % images.length;
+        const nextImageId = images[nextIndex].id;
+        const newUrl = `${window.location.pathname}?p=${galleryId}&i=${nextImageId}`;
+        history.pushState(null, "", newUrl);
+        document.getElementById(nextImageId).scrollIntoView({ behavior: "smooth" });
+    }
+    document.getElementById("overlay").style.display = "none";
+    // Get the next image element and click it
+    const currentImage = document.getElementById(currentImageId);
+    if (currentImage) {
+        const nextImg = currentImage.nextElementSibling;
+        if (nextImg && nextImg.tagName === "IMG") {
+            nextImg.click();
+        }
+    }
+}
+
+function previous_image() {
+    const params = new URLSearchParams(window.location.search);
+    const galleryId = params.get("p") || "";
+    const currentImageId = params.get("i") || "header";
+    const gallery = document.getElementById("gallery");
+    const images = Array.from(gallery.querySelectorAll("img")).filter(img => img.id.startsWith("photo-"));
+    const currentIndex = images.findIndex(img => img.id === currentImageId);
+    if (currentIndex !== -1) {
+        const previousIndex = (currentIndex - 1 + images.length) % images.length;
+        const previousImageId = images[previousIndex].id;
+        const newUrl = `${window.location.pathname}?p=${galleryId}&i=${previousImageId}`;
+        history.pushState(null, "", newUrl);
+        document.getElementById(previousImageId).scrollIntoView({ behavior: "smooth" });
+    }
+    document.getElementById("overlay").style.display = "none";
+    // Get the next image element and click it
+    const currentImage = document.getElementById(currentImageId);
+    if (currentImage) {
+        const nextImg = currentImage.nextElementSibling;
+        if (nextImg && nextImg.tagName === "IMG") {
+            nextImg.click();
+        }
+    }
+}
+
+function download_image() {
+    const params = new URLSearchParams(window.location.search);
+    const imageId = params.get("i") || "header";
+    const imageElement = document.getElementById(imageId);
+    
+    if (imageElement && imageElement.src) {
+        const link = document.createElement('a');
+        link.href = imageElement.src;
+        link.download = imageId.replace("photo-", "") + ".jpg"; // Set the filename
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    } else {
+        console.warn("Image not found or not loaded yet.");
+    }
+}
+
 async function waitForElement(id, timeout = 5000) {
     return new Promise((resolve, reject) => {
         const intervalTime = 100;

@@ -398,13 +398,29 @@ strong.nospace {
 
     padding: 0 !important;
     margin: 0 !important;
+
+    flex-direction: column;
+}
+
+#overlay .horizontal_container {
+    width: 100%;
+    height: 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#overlay .horizontal_container img {
+    filter: invert(1);
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 #big_image {
     border-radius: 15px;
     object-fit: contain;
     width: 100%;
-    height: 100%;
+    height: 95%;
 }
 
 #hello {
@@ -430,6 +446,7 @@ strong.nospace {
     /* Ensure images fill the container */
     background: #ccc;
     /* Optional: background color before the image is loaded */
+    margin-left: 0 !important;
 }
 
 

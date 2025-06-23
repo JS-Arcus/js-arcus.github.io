@@ -77,8 +77,13 @@
     <div id="gallery">
         
     </div>
-    <div id="overlay" onclick='document.getElementById("overlay").style.display = "none"'>
-        <img id="big_image">
+    <div id="overlay">
+        <img id="big_image" onclick='document.getElementById("overlay").style.display = "none"'>
+        <div class="horizontal_container">
+            <img src="static/img/ui_icon/left.svg" onclick="prev_image()">
+            <img src="static/img/ui_icon/download.svg" onclick="download_image()">
+            <img src="static/img/ui_icon/right.svg" onclick="next_image()">
+        </div>
     </div>
     <img id="i1">
 </div>

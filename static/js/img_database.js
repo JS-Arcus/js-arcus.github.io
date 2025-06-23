@@ -272,24 +272,24 @@ function next_image() {
     const galleryId = params.get("p") || "";
     const currentImageId = params.get("i") || "header";
     const gallery = document.getElementById("gallery");
-    const images = Array.from(gallery.querySelectorAll("img")).filter(img => img.id.startsWith("photo-"));
+    // Only consider images that are loaded (src is set)
+    const images = Array.from(gallery.querySelectorAll("img"))
+        .filter(img => img.id.startsWith("photo-") && img.src && img.complete && img.naturalWidth > 0);
+    if (images.length === 0) return;
+
     const currentIndex = images.findIndex(img => img.id === currentImageId);
+    let nextIndex = 0;
     if (currentIndex !== -1) {
-        const nextIndex = (currentIndex + 1) % images.length;
-        const nextImageId = images[nextIndex].id;
-        const newUrl = `${window.location.pathname}?p=${galleryId}&i=${nextImageId}`;
-        history.pushState(null, "", newUrl);
-        document.getElementById(nextImageId).scrollIntoView({ behavior: "smooth" });
+        nextIndex = (currentIndex + 1) % images.length;
     }
-    document.getElementById("overlay").style.display = "none";
-    // Get the next image element and click it
-    const currentImage = document.getElementById(currentImageId);
-    if (currentImage) {
-        const nextImg = currentImage.nextElementSibling;
-        if (nextImg && nextImg.tagName === "IMG") {
-            nextImg.click();
-        }
-    }
+    const nextImageId = images[nextIndex].id;
+    const newUrl = `${window.location.pathname}?p=${galleryId}&i=${nextImageId}`;
+    history.pushState(null, "", newUrl);
+
+    // Hide overlay and show next image in overlay
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("big_image").src = document.getElementById(nextImageId).src;
+    document.getElementById(nextImageId).scrollIntoView({ behavior: "smooth" });
 }
 
 function prev_image() {
@@ -297,24 +297,24 @@ function prev_image() {
     const galleryId = params.get("p") || "";
     const currentImageId = params.get("i") || "header";
     const gallery = document.getElementById("gallery");
-    const images = Array.from(gallery.querySelectorAll("img")).filter(img => img.id.startsWith("photo-"));
+    // Only consider images that are loaded (src is set)
+    const images = Array.from(gallery.querySelectorAll("img"))
+        .filter(img => img.id.startsWith("photo-") && img.src && img.complete && img.naturalWidth > 0);
+    if (images.length === 0) return;
+
     const currentIndex = images.findIndex(img => img.id === currentImageId);
+    let prevIndex = images.length - 1;
     if (currentIndex !== -1) {
-        const previousIndex = (currentIndex - 1 + images.length) % images.length;
-        const previousImageId = images[previousIndex].id;
-        const newUrl = `${window.location.pathname}?p=${galleryId}&i=${previousImageId}`;
-        history.pushState(null, "", newUrl);
-        document.getElementById(previousImageId).scrollIntoView({ behavior: "smooth" });
+        prevIndex = (currentIndex - 1 + images.length) % images.length;
     }
-    document.getElementById("overlay").style.display = "none";
-    // Get the next image element and click it
-    const currentImage = document.getElementById(currentImageId);
-    if (currentImage) {
-        const nextImg = currentImage.nextElementSibling;
-        if (nextImg && nextImg.tagName === "IMG") {
-            nextImg.click();
-        }
-    }
+    const prevImageId = images[prevIndex].id;
+    const newUrl = `${window.location.pathname}?p=${galleryId}&i=${prevImageId}`;
+    history.pushState(null, "", newUrl);
+
+    // Hide overlay and show previous image in overlay
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("big_image").src = document.getElementById(prevImageId).src;
+    document.getElementById(prevImageId).scrollIntoView({ behavior: "smooth" });
 }
 
 function download_image() {

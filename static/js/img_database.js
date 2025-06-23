@@ -90,8 +90,9 @@ let cancel = false
 let interval = null
 
 let parent_path = null
-async function load_gallery(path) {
+async function load_gallery(path, priorityImageId = "") {
     console.log(path)
+
     clearInterval(interval)
     const thisLoadId = ++currentGalleryLoadId; // Increment to invalidate previous calls
     const savedData = JSON.parse(localStorage.getItem("saved_password"));
@@ -110,6 +111,8 @@ async function load_gallery(path) {
         }
         document.getElementById("gallery-back").onclick = () => {
             interval = setInterval(() => load_gallery(parent_path), 100)
+            newUrl = `${window.location.pathname}?p=${parent_path}`;
+            history.pushState(null, "", newUrl);
         };
     }
 
@@ -176,37 +179,69 @@ async function load_gallery(path) {
                     });
                     document.getElementById("current_gallery_title").textContent = title;
 
-                    Object.keys(struct).sort().reverse().forEach(element => {
+                    // Separate albums and images
+                    const albums = [];
+                    const images = [];
+                    Object.keys(struct).forEach(element => {
+                        if (typeof struct[element] === "object") {
+                            albums.push(element);
+                        } else {
+                            images.push(element);
+                        }
+                    });
+
+                    // Sort albums and images
+                    albums.sort().reverse();
+                    images.sort().reverse();
+
+                    // Add albums first
+                    albums.forEach(element => {
+                        if (thisLoadId !== currentGalleryLoadId) return; // Stop mid-loop if needed
+                        let obj = document.createElement("button");
+                        obj.textContent = `${element}`;
+                        obj.id = `album-button-${element}`;
+                        obj.onclick = () => {
+                            load_gallery(`${path}${element}`);
+                            let newUrl = `${window.location.pathname}?p=${path}${element}`;
+                            history.pushState(null, "", newUrl);
+                        };
+                        obj.className = "album-button";
+                        gallery.appendChild(obj);
+                    });
+
+                    // If priorityImageId is set, move it to the front
+                    if (priorityImageId) {
+                        const idx = images.findIndex(el => `photo-${el}` === priorityImageId);
+                        if (idx > -1) {
+                            const [priority] = images.splice(idx, 1);
+                            images.unshift(priority);
+                        }
+                    }
+
+                    // Add images
+                    images.forEach(element => {
                         if (thisLoadId !== currentGalleryLoadId) return; // Stop mid-loop if needed
 
-                        if (typeof struct[element] === "object") {
-                            let obj = document.createElement("button");
-                            obj.textContent = `${element}`;
-                            obj.id = `album-button-${element}`;
-                            obj.onclick = () => load_gallery(`${path}${element}`);
-                            obj.className = "album-button";
-                            gallery.appendChild(obj);
-                        } else {
-                            let obj = document.createElement("img");
-                            obj.id = `photo-${element}`;
-                            obj.dataset.src =
-                                "https://raw.githubusercontent.com/JS-Arcus/js-arcus.github.io/refs/heads/main/static/image_database/" +
-                                struct[element].replaceAll(" ", "%20");
-                            obj.dataset.key = password;
-                            obj.dataset.loadId = thisLoadId;
-                            obj.style.minHeight = "100px"; // Optional: reserve space
-                            obj.style.background = "#eee"; // Optional: placeholder look
-                            obj.onerror = () => obj.remove();
-                            obj.onclick = () => {
+                        let obj = document.createElement("img");
+                        obj.id = `photo-${element}`;
+                        obj.dataset.src =
+                            "https://raw.githubusercontent.com/JS-Arcus/js-arcus.github.io/refs/heads/main/static/image_database/" +
+                            struct[element].replaceAll(" ", "%20");
+                        obj.dataset.key = password;
+                        obj.dataset.loadId = thisLoadId;
+                        obj.style.minHeight = "100px"; // Optional: reserve space
+                        obj.style.background = "#eee"; // Optional: placeholder look
+                        obj.onerror = () => obj.remove();
+                        obj.onclick = () => {
+                            if (obj.src) {
                                 document.getElementById("overlay").style.display = "flex"
                                 document.getElementById("big_image").src = document.getElementById(`photo-${element}`).src
                                 let newUrl = `${window.location.pathname}?p=${path}&i=photo-${element}`;
                                 history.pushState(null, "", newUrl);
                             }
-                            gallery.appendChild(obj);
-                            observer.observe(obj);
-
                         }
+                        gallery.appendChild(obj);
+                        observer.observe(obj);
                     });
 
                 } catch (error) {
@@ -261,9 +296,10 @@ async function init() {
     const galleryId = params.get("p");
     const imageId = params.get("i") || "header";
 
-    await load_gallery(galleryId || "");
+    await load_gallery(galleryId || "", imageId || "");
 
     try {
+        
         const targetElement = await waitForElement(imageId);
         targetElement.scrollIntoView({ behavior: "smooth" });
         targetElement.onload = () => targetElement.click()
@@ -271,6 +307,15 @@ async function init() {
         console.warn(err.message);
     }
 }
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        const overlay = document.getElementById("overlay");
+        if (overlay && overlay.style.display === "flex") {
+            overlay.style.display = "none";
+        }
+    }
+});
 
 
 

@@ -12,9 +12,10 @@
         rel="stylesheet">
 </head>
 
-<body>
+<body class="">
     <script src="static/js/script.js"></script>
-    <img id="background" src="static/img/wallpapers/index.jpg">
+    <script src="static/js/main.js"></script>
+    <img id="background" src="static/img/wallpapers/jemk.jpg">
     <div id="header">
         <img id="logo" onclick="logo_clicked()" src="static/img/js_arcus_logo.png">
         <div id="navbar">
@@ -45,7 +46,7 @@
             <div class="navbar_item" onclick="redir('contact.html')">
                 <img onclick="redir('contact.html')" class="ui_icon" src="static/img/ui_icon/contact.svg">
                 <span onclick="redir('contact.html')" class="navbar_text">Kontakt</span>
-            </div>            
+            </div>
             <div class="navbar_item" onclick="redir('zuckerwatte.html')">
                 <img onclick="redir('zuckerwatte.html')" class="ui_icon" src="static/img/ui_icon/zuckerwatte.svg">
                 <span onclick="redir('zuckerwatte.html')" class="navbar_text">Zuckerwattemaschine Mieten</span>
@@ -55,7 +56,7 @@
     </div>
     <div id="content">
         <p class="spaceholder_medium"></p>
-<h1>Was ist Jungschar?</h1>
+<h1 style="color:white">Was ist Jungschar?</h1>
 <p class="spaceholder_small"></p>
 
 <div>
@@ -125,19 +126,28 @@
             <div class="line" style="width:92vw;"></div>
             <p>Zuletzt aktualisiert am 11. Mai 2025</p>
             <div id="info">
-                <div id="adress">
-                    <strong>Unsere Adresse</strong>
-                    <p>Bernstrasse 68</p>
-                    <p>3018 Bern - Bümpliz</p>
-                    <br>
-                    <a href="https://www.google.ch/maps/place/Bernstrasse+68,+3018+Bern/@46.9418986,7.3916574,17z/data=!3m1!4b1!4m5!3m4!1s0x478e3918a9391751:0xf4ebbaf73a31fa4!8m2!3d46.9418986!4d7.3938461">Google maps</a>
-                </div>
                 <div id="hello">
                     <strong>Hey du!</strong>
                     <p>Wir freuen uns auf Deinen Besuch am nächsten Jungscharnachmittag… 😉</p>
                     <br>
                     <i>Jungschar Arcus</i>
                 </div>
+                <div id="adress">
+                    <strong>Unsere Adresse</strong>
+                    <p>Bernstrasse 68</p>
+                    <p>3018 Bern - Bümpliz</p>
+                    <br>
+                    <a
+                        href="https://www.google.ch/maps/place/Bernstrasse+68,+3018+Bern/@46.9418986,7.3916574,17z/data=!3m1!4b1!4m5!3m4!1s0x478e3918a9391751:0xf4ebbaf73a31fa4!8m2!3d46.9418986!4d7.3938461">Google
+                        maps</a>
+                </div>
+                <div id="map">
+                    <strong>Karte</strong>
+                    <iframe id="location_map" width="200" height="200" frameborder="0" style="border:0"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=7.391486,46.940934,7.396486,46.942934&amp;layer=mapnik&amp;marker=46.9419347,7.393986"
+                        aria-label="Karte mit Marker">
+                </div>
+
             </div>
         </div>
     </div>

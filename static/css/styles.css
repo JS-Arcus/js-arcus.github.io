@@ -59,11 +59,13 @@ h1 {
 }
 
 .spaceholder_medium {
-    height: 30vh
+    height: 30vh;
+    background-color: transparent !important;
 }
 
 .spaceholder_small {
-    height: 10vh
+    height: 10vh;
+    background-color: transparent !important;
 }
 
 #content::-webkit-scrollbar-thumb {
@@ -205,6 +207,10 @@ img {
     background-color: unset;
 }
 
+img.content_img {
+    width: 70%;
+}
+
 .ui_icon {
     filter: invert(1);
     height: 100%
@@ -221,6 +227,10 @@ img {
     padding-bottom: 0;
 }
 
+#location_map {
+    width:100%;
+    height: auto;
+}
 .compact_info {
     padding-top: 0 !important;
     display: flex;
@@ -277,9 +287,60 @@ button:hover {
     margin: 0 !important;
 }
 
+.inverted * {
+    color: white !important;
+    background-color: #222;
+}
+
+.inverted h1 {
+    background-color: transparent !important;
+}
+
+.inverted h2 {
+    background-color: transparent !important;
+}
+
+.inverted h3 {
+    background-color: transparent !important;
+}
+
+.inverted strong {
+    color: #02cdfb !important;
+}
+
+.inverted img.ui_icon {
+    filter: invert(0)
+}
+
+.inverted iframe {
+    filter: invert(1)
+}
+
+.inverted h3 {
+    color: white;
+}
+
+.inverted h2 {
+    color: rgb(25, 168, 244) !important;
+}
+
 h2 {
     color: #01378b;
     margin-bottom: 2vh !important;
+}
+
+h2.big {
+    color: #01378b;
+    height: 7vh;
+    font-size: 500%;
+    text-align: left;
+    text-anchor: middle;
+    padding-top: 2vh !important;
+    margin-bottom: 2vh !important;
+}
+
+.obfuscated {
+    font-family: monospace;
 }
 
 .leiter_info p {
@@ -287,6 +348,10 @@ h2 {
 }
 
 .leiter strong {
+    margin: 0 !important;
+}
+
+strong.nospace {
     margin: 0 !important;
 }
 
@@ -342,6 +407,9 @@ h2 {
     height: 100%;
 }
 
+#hello {
+    width: 30vw;
+}
 
 #gallery {
     padding: 0 !important;
@@ -388,6 +456,10 @@ h2 {
 @media (max-width: 768px) {
     .leiter_info p {
         margin-left: 4vw !important;
+    }
+
+    #hello {
+        width: unset;
     }
 
     .leiter_bild {

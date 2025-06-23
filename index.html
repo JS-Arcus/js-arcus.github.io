@@ -12,8 +12,9 @@
         rel="stylesheet">
 </head>
 
-<body>
+<body class="">
     <script src="static/js/script.js"></script>
+    <script src="static/js/main.js"></script>
     <img id="background" src="static/img/wallpapers/index.jpg">
     <div id="header">
         <img id="logo" onclick="logo_clicked()" src="static/img/js_arcus_logo.png">
@@ -45,7 +46,7 @@
             <div class="navbar_item" onclick="redir('contact.html')">
                 <img onclick="redir('contact.html')" class="ui_icon" src="static/img/ui_icon/contact.svg">
                 <span onclick="redir('contact.html')" class="navbar_text">Kontakt</span>
-            </div>            
+            </div>
             <div class="navbar_item" onclick="redir('zuckerwatte.html')">
                 <img onclick="redir('zuckerwatte.html')" class="ui_icon" src="static/img/ui_icon/zuckerwatte.svg">
                 <span onclick="redir('zuckerwatte.html')" class="navbar_text">Zuckerwattemaschine Mieten</span>
@@ -59,29 +60,45 @@
 <p class="spaceholder_small"></p>
 
 <div id="text">
-    <p>Das ist die neue Jungschi Webseite</p>
-    <p>Du siehst die Vorschau auf GitHub</p>
+    <p>Die Jungschar Arcus trifft sich alle zwei Wochen in Bümpliz, um coole Nachmittage miteinander zu verbringen.</p><br>
+    <p>Das Programm ist sehr abwechslungsreich; ob draussen spielen, basteln, rotzen, singen oder einfach nur miteinander Zeit verbringen, es fägt! So verbringen wir unsere Nachmittage mit viel Lachen und Spass. Unsere Jungschar besteht aus einem aufgestellten <a href="leiterteam.html">Leiterteam</a> und natürlich vielen begeisterten Jungschärlern und Jungschärlerinnen.</p><br>
+    <p>Bist auch du zwischen <strong class="nospace">5 und 14 Jahre</strong> alt, hast Lust dich jeden zweiten Samstag mit tollen Leuten zu treffen, Spiel und Spass zu erleben? Dann bist du bei uns genau am richtigen Ort!</p><br>
     <br>
-    <p>Lorem ipsum dolor sit amet, consetetur...
-    </p>
+    <img class="content_img" src="static/img/index/pfila25_lagerplatz.jpg">
+    <p>Hier sieht man den Lagerplatz des Pfila 2025, während dem Aufbau. Der grosse Baumstamm ist der Grundbaustein eines Sarasanis, ein Gruppenzelt indem gegessen und geplaudert wird.</p>
+    <br>
+    <img class="content_img" src="static/img/index/pfila25_zelte.jpg">
+    <p>In solchen Zelten wird übernachtet und Blödsinn gemacht.</p>
+    <br>
+    <img class="content_img" src="static/img/index/pfila25_aussicht.jpg">
+    <p>Unsere Lagerplätze befinden an schönen Orten mitten in der Natur, oft haben wir wunderschöne Aussicht</p>
 </div>
         <div id="footer">
             <div class="line" style="width:92vw;"></div>
-            <p>Zuletzt aktualisiert am 05. Mai 2025</p>
+            <p>Zuletzt aktualisiert am 23. Juni 2025</p>
             <div id="info">
-                <div id="adress">
-                    <strong>Unsere Adresse</strong>
-                    <p>Bernstrasse 68</p>
-                    <p>3018 Bern - Bümpliz</p>
-                    <br>
-                    <a href="https://www.google.ch/maps/place/Bernstrasse+68,+3018+Bern/@46.9418986,7.3916574,17z/data=!3m1!4b1!4m5!3m4!1s0x478e3918a9391751:0xf4ebbaf73a31fa4!8m2!3d46.9418986!4d7.3938461">Google maps</a>
-                </div>
                 <div id="hello">
                     <strong>Hey du!</strong>
                     <p>Wir freuen uns auf Deinen Besuch am nächsten Jungscharnachmittag… 😉</p>
                     <br>
                     <i>Jungschar Arcus</i>
                 </div>
+                <div id="adress">
+                    <strong>Unsere Adresse</strong>
+                    <p>Bernstrasse 68</p>
+                    <p>3018 Bern - Bümpliz</p>
+                    <br>
+                    <a
+                        href="https://www.google.ch/maps/place/Bernstrasse+68,+3018+Bern/@46.9418986,7.3916574,17z/data=!3m1!4b1!4m5!3m4!1s0x478e3918a9391751:0xf4ebbaf73a31fa4!8m2!3d46.9418986!4d7.3938461">Google
+                        maps</a>
+                </div>
+                <div id="map">
+                    <strong>Karte</strong>
+                    <iframe id="location_map" width="200" height="200" frameborder="0" style="border:0"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=7.391486,46.940934,7.396486,46.942934&amp;layer=mapnik&amp;marker=46.9419347,7.393986"
+                        aria-label="Karte mit Marker">
+                </div>
+
             </div>
         </div>
     </div>

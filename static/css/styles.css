@@ -509,7 +509,6 @@ strong.nospace {
         white-space: nowrap !important;
         overflow-x: none !important;
         overflow-y: hidden !important;
-        height: 24px !important;
     }
 
     #gallery {

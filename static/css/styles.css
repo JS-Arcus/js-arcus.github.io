@@ -73,8 +73,16 @@ h1 {
     border-radius: 4px;
 }
 
+.inverted #content::-webkit-scrollbar-thumb {
+    background-color: #eee;
+}
+
 #content::-webkit-scrollbar-track {
     background-color: white;
+}
+
+.inverted #content::-webkit-scrollbar-track {
+    background-color: #222;
 }
 
 #footer {
@@ -228,9 +236,10 @@ img.content_img {
 }
 
 #location_map {
-    width:100%;
+    width: 100%;
     height: auto;
 }
+
 .compact_info {
     padding-top: 0 !important;
     display: flex;
@@ -494,6 +503,13 @@ strong.nospace {
         padding-top: 0 !important;
         display: flex;
         flex-direction: column;
+    }
+
+    .obfuscated {
+        white-space: nowrap !important;
+        overflow-x: none !important;
+        overflow-y: hidden !important;
+        height: 24px !important;
     }
 
     #gallery {

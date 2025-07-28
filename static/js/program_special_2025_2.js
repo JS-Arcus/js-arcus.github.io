@@ -24,3 +24,20 @@ window.addEventListener('DOMContentLoaded', () => {
     content.onscroll = update_color;
     update_color()
 });
+
+function download_file(file_name) {
+    const link = document.createElement('a');
+    link.href = `static/${file_name}`;
+    link.download = file_name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function download_ical() {
+    download_file("semesters/2025-2/ical.ics")
+}
+
+function download_pdf() {
+    download_file("semesters/2025-2/print.pdf")
+}

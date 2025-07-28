@@ -281,6 +281,10 @@ button:hover {
     color: #01378b;
 }
 
+button.no_space {
+    margin: 0 !important;
+}
+
 .leiter_liste {
     margin-bottom: 0 !important;
 }
@@ -344,6 +348,10 @@ button:hover {
 
 .inverted h3 {
     color: white;
+}
+
+.inverted button:hover, .fake_inverted button:hover {
+    background-color: #444;
 }
 
 .right {

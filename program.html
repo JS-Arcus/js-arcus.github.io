@@ -10,46 +10,58 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="inverted">
+<body class="fake_inverted silkscreen transition">
     <script src="https://js-arcus.github.io/static/js/script.js"></script>
     <script src="https://js-arcus.github.io/static/js/main.js"></script>
-    <img id="background" src="https://js-arcus.github.io/static/img/wallpapers/pacman.png">
+    <script src="https://js-arcus.github.io/static/js/program_special_2025_2.js"></script>
+
+    <img id="background" src="https://js-arcus.github.io/static/img/wallpapers/pacman_2.png">
     <div id="header">
         <img id="logo" onclick="logo_clicked()" src="https://js-arcus.github.io/static/img/js_arcus_logo.png">
         <div id="navbar">
             <div class="navbar_item" onclick="redir('https://js-arcus.github.io/index.html')" id="index_item">
-                <img onclick="redir('https://js-arcus.github.io/index.html')" class="ui_icon" src="https://js-arcus.github.io/static/img/ui_icon/home.svg">
+                <img onclick="redir('https://js-arcus.github.io/index.html')" class="ui_icon"
+                    src="https://js-arcus.github.io/static/img/ui_icon/home.svg">
                 <span onclick="redir('https://js-arcus.github.io/index.html')" class="navbar_text">Start</span>
             </div>
             <div class="navbar_item" onclick="redir('https://js-arcus.github.io/current.html')">
-                <img onclick="redir('https://js-arcus.github.io/current.html')" class="ui_icon" src="https://js-arcus.github.io/static/img/ui_icon/current.svg">
+                <img onclick="redir('https://js-arcus.github.io/current.html')" class="ui_icon"
+                    src="https://js-arcus.github.io/static/img/ui_icon/current.svg">
                 <span onclick="redir('https://js-arcus.github.io/current.html')" class="navbar_text">Aktuelles</span>
             </div>
             <div class="navbar_item" onclick="redir('https://js-arcus.github.io/program.html')">
-                <img onclick="redir('https://js-arcus.github.io/program.html')" class="ui_icon" src="https://js-arcus.github.io/static/img/ui_icon/program.svg">
+                <img onclick="redir('https://js-arcus.github.io/program.html')" class="ui_icon"
+                    src="https://js-arcus.github.io/static/img/ui_icon/program.svg">
                 <span onclick="redir('https://js-arcus.github.io/program.html')" class="navbar_text">Programm</span>
             </div>
             <div class="navbar_item" onclick="redir('https://js-arcus.github.io/about.html')">
-                <img onclick="redir('https://js-arcus.github.io/about.html')" class="ui_icon" src="https://js-arcus.github.io/static/img/ui_icon/what.svg">
+                <img onclick="redir('https://js-arcus.github.io/about.html')" class="ui_icon"
+                    src="https://js-arcus.github.io/static/img/ui_icon/what.svg">
                 <span onclick="redir('https://js-arcus.github.io/about.html')" class="navbar_text">Was ist Jungschar?</span>
             </div>
             <div class="navbar_item" onclick="redir('https://js-arcus.github.io/photos.html')">
-                <img onclick="redir('https://js-arcus.github.io/photos.html')" class="ui_icon" src="https://js-arcus.github.io/static/img/ui_icon/photos.svg">
+                <img onclick="redir('https://js-arcus.github.io/photos.html')" class="ui_icon"
+                    src="https://js-arcus.github.io/static/img/ui_icon/photos.svg">
                 <span onclick="redir('https://js-arcus.github.io/photos.html')" class="navbar_text">Fotos</span>
             </div>
             <div class="navbar_item" onclick="redir('https://js-arcus.github.io/leiterteam.html')">
-                <img onclick="redir('https://js-arcus.github.io/leiterteam.html')" class="ui_icon" src="https://js-arcus.github.io/static/img/ui_icon/team.svg">
+                <img onclick="redir('https://js-arcus.github.io/leiterteam.html')" class="ui_icon"
+                    src="https://js-arcus.github.io/static/img/ui_icon/team.svg">
                 <span onclick="redir('https://js-arcus.github.io/leiterteam.html')" class="navbar_text">Leiterteam</span>
             </div>
             <div class="navbar_item" onclick="redir('https://js-arcus.github.io/contact.html')">
-                <img onclick="redir('https://js-arcus.github.io/contact.html')" class="ui_icon" src="https://js-arcus.github.io/static/img/ui_icon/contact.svg">
+                <img onclick="redir('https://js-arcus.github.io/contact.html')" class="ui_icon"
+                    src="https://js-arcus.github.io/static/img/ui_icon/contact.svg">
                 <span onclick="redir('https://js-arcus.github.io/contact.html')" class="navbar_text">Kontakt</span>
             </div>
             <div class="navbar_item" onclick="redir('https://js-arcus.github.io/zuckerwatte.html')">
-                <img onclick="redir('https://js-arcus.github.io/zuckerwatte.html')" class="ui_icon" src="https://js-arcus.github.io/static/img/ui_icon/zuckerwatte.svg">
-                <span onclick="redir('https://js-arcus.github.io/zuckerwatte.html')" class="navbar_text">Zuckerwattemaschine Mieten</span>
+                <img onclick="redir('https://js-arcus.github.io/zuckerwatte.html')" class="ui_icon"
+                    src="https://js-arcus.github.io/static/img/ui_icon/zuckerwatte.svg">
+                <span onclick="redir('https://js-arcus.github.io/zuckerwatte.html')" class="navbar_text">Zuckerwattemaschine
+                    Mieten</span>
             </div>
         </div>
 
@@ -58,14 +70,73 @@
         <p class="spaceholder_medium"></p>
 <h1 style="color:white">Programm</h1>
 <p class="spaceholder_small"></p>
-<div class="content inverted">
+<div class="content inverted" id="program_content">
     <h3>2025-2:</h3>
-    <h2 class="big obfuscated">????????????</h2>
+    
+    <h2 class="big">Levelup</h2>
     <p class="spaceholder_small"></p>
-    <p class="obfuscated">======================================================================================</p>
-    <strong>Beep-Büüp: Das Semesterprogramm ist noch verschlüsselt...</strong><br>
-    <strong>Komm später nochmals zurück!</strong>
-    <p class="obfuscated">======================================================================================</p>
+    <h3 class="left">23. August 2025</h3>
+    <strong class="left">13:30</strong>
+    <p class="left">Abend für die Grossen</p>
+    <strong class="left">EMK Bümpliz</strong>
+
+    <p class="spaceholder_small"></p>
+    <h3 class="right">06. September 2025</h3>
+    <strong class="right">13:30</strong>
+    <strong class="right">EMK Bümpliz</strong>
+    <p class="spaceholder_small"></p>
+    <h3 class="left">20. September 2025</h3>
+    <strong class="left">13:30</strong>
+    <strong class="left">Reformierte Kirche Bümpliz</strong>
+    <a href="current.html#refbern">Infos zum neuen Standort findest du hier</a>
+    <p class="spaceholder_small"></p>
+
+    <h3 class="right">27. September - 4. Oktober</h3>
+    <strong class="right">HeLa</strong>
+    <p class="right">Weitere Infos folgen</p>
+    <p class="spaceholder_small"></p>
+
+    <h3 class="left">18. Oktober 2025</h3>
+    <strong class="left">13:30</strong>
+    <strong class="left">Reformierte Kirche Bümpliz</strong>
+    <a href="current.html#refbern">Infos zum neuen Standort findest du hier</a>
+    <p class="spaceholder_small"></p>
+
+    <h3 class="right">01. November 2025</h3>
+    <strong class="right">13:30</strong>
+    <strong class="right">Reformierte Kirche Bümpliz</strong>
+    <a class="right" href="current.html#refbern">Infos zum neuen Standort findest du hier</a>
+    <p class="spaceholder_small"></p>
+
+    <h3 class="left">15. November 2025</h3>
+    <strong class="left">13:30</strong>
+    <strong class="left">Reformierte Kirche Bümpliz</strong>
+    <a href="current.html#refbern">Infos zum neuen Standort findest du hier</a>
+    <p class="spaceholder_small"></p>
+
+    <h3 class="right">29. November 2025</h3>
+    <strong class="right">13:30</strong>
+    <p class="right">Abend für die Grossen</p>
+    <strong class="right">Reformierte Kirche Bümpliz</strong>
+    <a class="right" href="current.html#refbern">Infos zum neuen Standort findest du hier</a>
+    <p class="spaceholder_small"></p>
+
+    <h3 class="left">13. Dezember 2025</h3>
+    <strong class="left">13:30</strong>
+    <strong class="left">Reformierte Kirche Bümpliz</strong>
+    <a href="current.html#refbern">Infos zum neuen Standort findest du hier</a>
+    <p class="spaceholder_small"></p>
+
+    <h3 class="right">16.-18. Januar 2026</h3>
+    <strong class="right">SchliWo</strong>
+    <p class="right">Weitere Infos folgen</p>
+    <p class="spaceholder_small"></p>
+
+    <h3 class="left">31. Januar</h3>
+    <strong class="left">13:30</strong>
+    <strong class="left">Reformierte Kirche Bümpliz</strong>
+    <a href="current.html#refbern">Infos zum neuen Standort findest du hier</a>
+    <p class="spaceholder_small"></p>
 </div>
         <div id="footer">
             <div class="line" style="width:92vw;"></div>

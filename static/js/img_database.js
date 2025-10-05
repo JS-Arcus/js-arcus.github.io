@@ -38,7 +38,7 @@ async function save_password() {
     load_gallery("")
 }
 
-async function decrypt_image(path, key, outputId, loadId) {
+async function decrypt_image(path, key, outputId, loadId, limit = true) {
     try {
         const response = await fetch(path);
         if (loadId !== currentGalleryLoadId) return; // Cancel if outdated
@@ -76,7 +76,25 @@ async function decrypt_image(path, key, outputId, loadId) {
         if (loadId !== currentGalleryLoadId) return; // Cancel just before DOM update
 
         const blob = new Blob([decrypted], { type: "image/jpeg" });
-        document.getElementById(outputId).src = URL.createObjectURL(blob);
+        if (limit) {
+            // Limit resolution to 480p before displaying
+            const canvas = document.createElement("canvas");
+            const imgBitmap = await createImageBitmap(blob);
+            const maxHeight = 480;
+            const scale = Math.min(1, maxHeight / imgBitmap.height);
+            canvas.width = Math.round(imgBitmap.width * scale);
+            canvas.height = Math.round(imgBitmap.height * scale);
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(imgBitmap, 0, 0, canvas.width, canvas.height);
+
+            canvas.toBlob(resizedBlob => {
+                document.getElementById(outputId).src = URL.createObjectURL(resizedBlob);
+            }, "image/jpeg");
+        }
+        else {
+            document.getElementById(outputId).src = URL.createObjectURL(blob);
+        }
     } catch (error) {
         if (loadId === currentGalleryLoadId) {
             console.error(`Failed to decrypt image ${path}:`, error);
@@ -234,8 +252,16 @@ async function load_gallery(path, priorityImageId = "") {
                         obj.onerror = () => obj.remove();
                         obj.onclick = () => {
                             if (obj.src) {
-                                document.getElementById("overlay").style.display = "flex"
-                                document.getElementById("big_image").src = document.getElementById(`photo-${element}`).src
+                                document.getElementById("overlay").style.display = "flex";
+                                // Decrypt the original photo again, with limit set to false
+                                decrypt_image(
+                                    obj.dataset.src,
+                                    obj.dataset.key,
+                                    "big_image",
+                                    thisLoadId,
+                                    false // Do not limit resolution
+                                );
+                                // Update URL to reflect the selected image
                                 let newUrl = `${window.location.pathname}?p=${path}&i=photo-${element}`;
                                 history.pushState(null, "", newUrl);
                             }
@@ -282,14 +308,22 @@ function next_image() {
     if (currentIndex !== -1) {
         nextIndex = (currentIndex + 1) % images.length;
     }
-    const nextImageId = images[nextIndex].id;
+    const nextImage = images[nextIndex];
+    const nextImageId = nextImage.id;
     const newUrl = `${window.location.pathname}?p=${galleryId}&i=${nextImageId}`;
     history.pushState(null, "", newUrl);
 
     // Hide overlay and show next image in overlay
     document.getElementById("overlay").style.display = "flex";
-    document.getElementById("big_image").src = document.getElementById(nextImageId).src;
-    document.getElementById(nextImageId).scrollIntoView({ behavior: "smooth" });
+    // Decrypt the original photo again, with limit set to false
+    decrypt_image(
+        nextImage.dataset.src,
+        nextImage.dataset.key,
+        "big_image",
+        parseInt(nextImage.dataset.loadId),
+        false // Do not limit resolution
+    );
+    nextImage.scrollIntoView({ behavior: "smooth" });
 }
 
 function prev_image() {
@@ -307,21 +341,29 @@ function prev_image() {
     if (currentIndex !== -1) {
         prevIndex = (currentIndex - 1 + images.length) % images.length;
     }
-    const prevImageId = images[prevIndex].id;
+    const prevImage = images[prevIndex];
+    const prevImageId = prevImage.id;
     const newUrl = `${window.location.pathname}?p=${galleryId}&i=${prevImageId}`;
     history.pushState(null, "", newUrl);
 
     // Hide overlay and show previous image in overlay
     document.getElementById("overlay").style.display = "flex";
-    document.getElementById("big_image").src = document.getElementById(prevImageId).src;
-    document.getElementById(prevImageId).scrollIntoView({ behavior: "smooth" });
+    // Decrypt the original photo again, with limit set to false
+    decrypt_image(
+        prevImage.dataset.src,
+        prevImage.dataset.key,
+        "big_image",
+        parseInt(prevImage.dataset.loadId),
+        false // Do not limit resolution
+    );
+    prevImage.scrollIntoView({ behavior: "smooth" });
 }
 
 function download_image() {
     const params = new URLSearchParams(window.location.search);
     const imageId = params.get("i") || "header";
     const imageElement = document.getElementById(imageId);
-    
+
     if (imageElement && imageElement.src) {
         const link = document.createElement('a');
         link.href = imageElement.src;
@@ -366,7 +408,7 @@ async function init() {
     await load_gallery(galleryId || "", imageId || "");
 
     try {
-        
+
         const targetElement = await waitForElement(imageId);
         targetElement.scrollIntoView({ behavior: "smooth" });
         targetElement.onload = () => targetElement.click()
@@ -375,12 +417,22 @@ async function init() {
     }
 }
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
         const overlay = document.getElementById("overlay");
         if (overlay && overlay.style.display === "flex") {
             overlay.style.display = "none";
         }
+        const params = new URLSearchParams(window.location.search);
+        params.delete("i");
+        const newUrl = `${window.location.pathname}?${params.toString()}`;
+        history.replaceState(null, "", newUrl);
+    }
+    if (event.key === "ArrowRight") {
+        next_image();
+    }
+    if (event.key === "ArrowLeft") {
+        prev_image();
     }
 });
 

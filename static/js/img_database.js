@@ -142,7 +142,6 @@ async function load_gallery(path, priorityImageId = "") {
             password = "";
         } else {
             console.log("password valid")
-            document.getElementById("password_input").value = savedData.password;
             password = savedData.password;
         }
     }

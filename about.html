@@ -3,6 +3,7 @@
 
 <head>
     <title>Über uns - Jungschar Arcus</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://js-arcus.github.io/static/favicon.ico">
     <link rel="stylesheet" href="https://js-arcus.github.io/static/css/styles.css">
@@ -14,6 +15,7 @@
 </head>
 
 <body class="">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://js-arcus.github.io/static/js/script.js"></script>
     <script src="https://js-arcus.github.io/static/js/main.js"></script>
     
@@ -145,18 +147,17 @@
                 </div>
                 <div id="adress">
                     <strong>Unsere Adresse</strong>
-                    <p>Bernstrasse 68</p>
+                    <p>Reformierte Kirche Bümpliz</p>
+                    <p>Bernstrasse 85</p>
                     <p>3018 Bern - Bümpliz</p>
                     <br>
                     <a
-                        href="https://www.google.ch/maps/place/Bernstrasse+68,+3018+Bern/@46.9418986,7.3916574,17z/data=!3m1!4b1!4m5!3m4!1s0x478e3918a9391751:0xf4ebbaf73a31fa4!8m2!3d46.9418986!4d7.3938461">Google
+                        href="https://www.google.com/maps/place/Reformierte+Kirche+B%C3%BCmpliz/@46.9406872,7.3920721,218m/data=!3m1!1e3!4m6!3m5!1s0x478e3921e605cac1:0x2fcb4a5a49172980!8m2!3d46.9407196!4d7.3924943!16s%2Fg%2F1hf1nf7p7?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D">Google
                         maps</a>
                 </div>
                 <div id="map">
                     <strong>Karte</strong>
-                    <iframe id="location_map" width="200" height="200" frameborder="0" style="border:0"
-                        src="https://www.openstreetmap.org/export/embed.html?bbox=7.391486,46.940934,7.396486,46.942934&amp;layer=mapnik&amp;marker=46.9419347,7.393986"
-                        aria-label="Karte mit Marker">
+                    <div id="location_map"></div>
                 </div>
 
             </div>

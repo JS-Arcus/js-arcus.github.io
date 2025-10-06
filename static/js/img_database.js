@@ -361,7 +361,7 @@ function prev_image() {
 function download_image() {
     const params = new URLSearchParams(window.location.search);
     const imageId = params.get("i") || "header";
-    const imageElement = document.getElementById(imageId);
+    const imageElement = document.getElementById("bigImage");
 
     if (imageElement && imageElement.src) {
         const link = document.createElement('a');

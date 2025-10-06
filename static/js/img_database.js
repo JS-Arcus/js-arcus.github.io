@@ -2,6 +2,9 @@ let password = ""
 
 let currentGalleryLoadId = 0;
 
+let current_image = 0;
+let image_count = 0;
+
 const observer = new IntersectionObserver((entries, obs) => {
     for (const entry of entries) {
         if (entry.isIntersecting) {
@@ -235,6 +238,7 @@ async function load_gallery(path, priorityImageId = "") {
                         }
                     }
 
+                    image_count = images.length;
                     // Add images
                     images.forEach(element => {
                         if (thisLoadId !== currentGalleryLoadId) return; // Stop mid-loop if needed
@@ -251,6 +255,7 @@ async function load_gallery(path, priorityImageId = "") {
                         obj.onerror = () => obj.remove();
                         obj.onclick = () => {
                             if (obj.src) {
+                                current_image = element
                                 document.getElementById("overlay").style.display = "flex";
                                 // Decrypt the original photo again, with limit set to false
                                 decrypt_image(
@@ -292,70 +297,116 @@ function lock_gallery() {
     document.getElementById("gallery").innerHTML = ""
 }
 
-function next_image() {
+async function next_image() {
     const params = new URLSearchParams(window.location.search);
     const galleryId = params.get("p") || "";
-    const currentImageId = params.get("i") || "header";
-    const gallery = document.getElementById("gallery");
-    // Only consider images that are loaded (src is set)
-    const images = Array.from(gallery.querySelectorAll("img"))
-        .filter(img => img.id.startsWith("photo-") && img.src && img.complete && img.naturalWidth > 0);
-    if (images.length === 0) return;
-
-    const currentIndex = images.findIndex(img => img.id === currentImageId);
-    let nextIndex = 0;
-    if (currentIndex !== -1) {
-        nextIndex = (currentIndex + 1) % images.length;
+    let nextImageId = `photo-${parseInt(current_image) + 1}`;
+    if (parseInt(current_image) + 1 > image_count - 1) {
+        nextImageId = "photo-0";
     }
-    const nextImage = images[nextIndex];
-    const nextImageId = nextImage.id;
-    const newUrl = `${window.location.pathname}?p=${galleryId}&i=${nextImageId}`;
+    current_image = parseInt(nextImageId.replaceAll("photo-", ""));
+    let nextImage = document.getElementById(nextImageId);
+    let newUrl = `${window.location.pathname}?p=${galleryId}&i=${nextImageId}`;
     history.pushState(null, "", newUrl);
 
-    // Hide overlay and show next image in overlay
     document.getElementById("overlay").style.display = "flex";
-    // Decrypt the original photo again, with limit set to false
-    decrypt_image(
+    const controls = document.getElementById("image_controls");
+    if (controls) controls.style.display = "none";
+
+    var bigimg = document.getElementById("big_image");
+    bigimg.src = "static/img/ui_icon/loading_progress.svg";
+    bigimg.style.width = "48px"; // Make loading circle smaller
+    bigimg.style.height = "48px";
+    await new Promise(resolve => {
+        const checkLoaded = () => {
+            if (bigimg.complete && bigimg.naturalWidth !== 0) {
+                resolve();
+            } else {
+                setTimeout(checkLoaded, 50);
+            }
+        };
+        checkLoaded();
+    });
+    let rotation = 0;
+    let intervalthing = setInterval(() => {
+        bigimg.style.transform = "rotate(" + rotation + "deg)";
+        rotation += 4;
+    }, 1);
+
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    await decrypt_image(
         nextImage.dataset.src,
         nextImage.dataset.key,
         "big_image",
         parseInt(nextImage.dataset.loadId),
-        false // Do not limit resolution
+        false // Full resolution
     );
+
+    clearInterval(intervalthing);
+    bigimg.style.transform = "rotate(0deg)";
+    bigimg.style.width = ""; // Reset size after loading
+    bigimg.style.height = "";
+
+    if (controls) controls.style.display = ""; // Show controls after loading
+
     nextImage.scrollIntoView({ behavior: "smooth" });
 }
 
-function prev_image() {
+async function prev_image() {
     const params = new URLSearchParams(window.location.search);
     const galleryId = params.get("p") || "";
-    const currentImageId = params.get("i") || "header";
-    const gallery = document.getElementById("gallery");
-    // Only consider images that are loaded (src is set)
-    const images = Array.from(gallery.querySelectorAll("img"))
-        .filter(img => img.id.startsWith("photo-") && img.src && img.complete && img.naturalWidth > 0);
-    if (images.length === 0) return;
-
-    const currentIndex = images.findIndex(img => img.id === currentImageId);
-    let prevIndex = images.length - 1;
-    if (currentIndex !== -1) {
-        prevIndex = (currentIndex - 1 + images.length) % images.length;
+    let nextImageId = `photo-${parseInt(current_image) - 1}`;
+    if (parseInt(current_image) - 1 < 0) {
+        nextImageId = `photo-${image_count - 1}`;
     }
-    const prevImage = images[prevIndex];
-    const prevImageId = prevImage.id;
-    const newUrl = `${window.location.pathname}?p=${galleryId}&i=${prevImageId}`;
+    current_image = parseInt(nextImageId.replaceAll("photo-", ""));
+    let nextImage = document.getElementById(nextImageId);
+    let newUrl = `${window.location.pathname}?p=${galleryId}&i=${nextImageId}`;
     history.pushState(null, "", newUrl);
 
-    // Hide overlay and show previous image in overlay
     document.getElementById("overlay").style.display = "flex";
-    // Decrypt the original photo again, with limit set to false
-    decrypt_image(
-        prevImage.dataset.src,
-        prevImage.dataset.key,
+    const controls = document.getElementById("image_controls");
+    if (controls) controls.style.display = "none";
+
+    var bigimg = document.getElementById("big_image");
+    bigimg.src = "static/img/ui_icon/loading_progress.svg";
+    bigimg.style.width = "48px"; // Make loading circle smaller
+    bigimg.style.height = "48px";
+    await new Promise(resolve => {
+        const checkLoaded = () => {
+            if (bigimg.complete && bigimg.naturalWidth !== 0) {
+                resolve();
+            } else {
+                setTimeout(checkLoaded, 50);
+            }
+        };
+        checkLoaded();
+    });
+    let rotation = 0;
+    let intervalthing = setInterval(() => {
+        bigimg.style.transform = "rotate(" + rotation + "deg)";
+        rotation += 4;
+    }, 1);
+
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    await decrypt_image(
+        nextImage.dataset.src,
+        nextImage.dataset.key,
         "big_image",
-        parseInt(prevImage.dataset.loadId),
-        false // Do not limit resolution
+        parseInt(nextImage.dataset.loadId),
+        false // Full resolution
     );
-    prevImage.scrollIntoView({ behavior: "smooth" });
+
+    clearInterval(intervalthing);
+    bigimg.style.transform = "rotate(0deg)";
+    bigimg.style.width = ""; // Reset size after loading
+    bigimg.style.height = "";
+
+    if (controls) controls.style.display = ""; // Show controls after loading
+
+    nextImage.scrollIntoView({ behavior: "smooth" });
 }
 
 function download_image() {

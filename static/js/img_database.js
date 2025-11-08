@@ -79,10 +79,11 @@ async function decrypt_image(path, key, outputId, loadId, limit = true) {
         if (loadId !== currentGalleryLoadId) return; // Cancel just before DOM update
 
         const blob = new Blob([decrypted], { type: "image/jpeg" });
-        if (limit) {
+        const imgBitmap = await createImageBitmap(blob);
+        console.log(`Debug: Original image resolution: ${imgBitmap.width}, ${imgBitmap.height}`)
+        if (limit==true) {
             // Limit resolution to 480p before displaying
             const canvas = document.createElement("canvas");
-            const imgBitmap = await createImageBitmap(blob);
             const maxHeight = 480;
             const scale = Math.min(1, maxHeight / imgBitmap.height);
             canvas.width = Math.round(imgBitmap.width * scale);
@@ -412,7 +413,7 @@ async function prev_image() {
 function download_image() {
     const params = new URLSearchParams(window.location.search);
     const imageId = params.get("i") || "header";
-    const imageElement = document.getElementById("bigImage");
+    const imageElement = document.getElementById("big_image");
 
     if (imageElement && imageElement.src) {
         const link = document.createElement('a');

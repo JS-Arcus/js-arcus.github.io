@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Delius&display=swap" rel="stylesheet">
 </head>
 
 <body class="fake_inverted silkscreen transition">
@@ -21,9 +22,9 @@
     <script src="https://js-arcus.github.io/static/js/program_special_2025_2.js"></script>
 
     <img id="background" src="https://js-arcus.github.io/static/img/wallpapers/pacman_2.png">
-    <div id="header">
+    <div id="header" class="tintable">
         <img id="logo" onclick="logo_clicked()" src="https://js-arcus.github.io/static/img/js_arcus_logo.png">
-        <div id="navbar">
+        <div id="navbar" class="tintable">
             <div class="navbar_item" onclick="redir('https://js-arcus.github.io/index.html')" id="index_item">
                 <img onclick="redir('https://js-arcus.github.io/index.html')" class="ui_icon"
                     src="https://js-arcus.github.io/static/img/ui_icon/home.svg">
@@ -48,6 +49,11 @@
                 <img onclick="redir('https://js-arcus.github.io/photos.html')" class="ui_icon"
                     src="https://js-arcus.github.io/static/img/ui_icon/photos.svg">
                 <span onclick="redir('https://js-arcus.github.io/photos.html')" class="navbar_text">Fotos</span>
+            </div>
+            <div class="navbar_item" onclick="redir('https://js-arcus.github.io/camps.html')">
+                <img onclick="redir('https://js-arcus.github.io/camps.html')" class="ui_icon"
+                    src="https://js-arcus.github.io/static/img/ui_icon/camps.svg">
+                <span onclick="redir('https://js-arcus.github.io/camps.html')" class="navbar_text">Lager</span>
             </div>
             <div class="navbar_item" onclick="redir('https://js-arcus.github.io/leiterteam.html')">
                 <img onclick="redir('https://js-arcus.github.io/leiterteam.html')" class="ui_icon"
@@ -147,19 +153,23 @@
     <a href="current.html#Sommer%202025">Infos zum neuen Standort findest du hier</a>
     <p class="spaceholder_small"></p>
 </div>
-        <div id="footer">
+        <div id="footer" class="tintable">
             <div class="line" style="width:92vw;"></div>
-            <p>Zuletzt aktualisiert am 28. Juli 2025</p>
-            <div id="info">
-                <div id="hello">
+            <p>Zuletzt aktualisiert am 08. November 2025</p>
+            <div id="info" class="tintable">
+                <div id="hello" class="tintable">
                     <strong>Hey du!</strong>
                     <p>Wir freuen uns auf Deinen Besuch am nächsten Jungscharnachmittag… 😉</p>
+                    <strong onclick="redir('https://js-arcus.github.io/contact.html')" style="cursor: pointer;">Kontaktiere
+                        uns!</strong>
+                    <br>
                     <br>
                     <i>Jungschar Arcus</i>
                 </div>
-                <div id="adress">
+                <div id="adress" class="tintable">
                     <strong>Unsere Adresse</strong>
-                    <p>Reformierte Kirche Bümpliz</p>
+                    <br>
+                    <a href="https://www.buempliz.refbern.ch/">Reformierte Kirche Bümpliz</a>
                     <p>Bernstrasse 85</p>
                     <p>3018 Bern - Bümpliz</p>
                     <br>
@@ -167,11 +177,14 @@
                         href="https://www.google.com/maps/place/Reformierte+Kirche+B%C3%BCmpliz/@46.9406872,7.3920721,218m/data=!3m1!1e3!4m6!3m5!1s0x478e3921e605cac1:0x2fcb4a5a49172980!8m2!3d46.9407196!4d7.3924943!16s%2Fg%2F1hf1nf7p7?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D">Google
                         maps</a>
                 </div>
-                <div id="map">
+                <div id="map" class="tintable">
                     <strong>Karte</strong>
                     <div id="location_map"></div>
                 </div>
-
+            </div>
+            <div class="centered tintable">
+                <p>Developed with ❤️ by sossinaydev © JS-Arcus, 2025</p>
+                <a href="https://github.com/JS-Arcus/js-arcus.github.io">View source on github</a>
             </div>
         </div>
     </div>

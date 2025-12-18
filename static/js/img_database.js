@@ -451,7 +451,7 @@ function align() {
 }
 setInterval(align, 500)
 
-async function init() {
+async function init_img_db() {
     const params = new URLSearchParams(window.location.search);
     const galleryId = params.get("p");
     const imageId = params.get("i") || "header";
@@ -489,4 +489,4 @@ document.addEventListener("keydown", function (event) {
 
 
 
-window.onload = init
+document.addEventListener("DOMContentLoaded", init_img_db);

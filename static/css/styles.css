@@ -250,6 +250,9 @@ img.content_img.medium {
 #map {
     width: 30vw;
 }
+#map a, #map span {
+    color: black !important;
+}
 
 #location_map {
     width: 100%;
@@ -712,6 +715,10 @@ div.centered {
 
     #navbar {
         margin-left: 2vw;
+    }
+
+    #map {
+        width: 90%;
     }
 
     .blog_post {

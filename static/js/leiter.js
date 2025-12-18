@@ -113,8 +113,8 @@ async function load_people(scroll_to) {
     }
 }
 
-async function init() {
+async function init_leiter() {
     load_people(document.location.href.split("#")[1] || "")
 }
 
-window.onload = init
+document.addEventListener("DOMContentLoaded", init_leiter);

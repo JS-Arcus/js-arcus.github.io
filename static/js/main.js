@@ -64,7 +64,7 @@ let countdown_interval = null;
 let map = null;
 
 
-window.onload = () => {
+function init_main() {
     obfuscation_interval = setInterval(handle_obfuscation, 10)
 
     map = L.map('location_map').setView([46.940629514276154, 7.392745334483644], 17);
@@ -146,3 +146,4 @@ window.onload = () => {
     });
 }
 
+document.addEventListener("DOMContentLoaded", init_main);

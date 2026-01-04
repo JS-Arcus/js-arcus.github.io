@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Seite nicht gefunden</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/favicon.ico">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Delius&family=PT+Serif&family=Old+Standard+TT&display=swap" rel="stylesheet">
+    
+</head>
+
+<body class="">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="static/js/script.js"></script>
+    <script src="static/js/main.js"></script>
+    
+    <img id="background" src="static/img/wallpapers/404.png">
+    <div id="header" class="tintable">
+        <img id="logo" onclick="logo_clicked()" src="static/img/js_arcus_logo.png">
+        <div id="navbar" class="tintable">
+            <div class="navbar_item" onclick="redir('index.html')" id="index_item">
+                <img onclick="redir('index.html')" class="ui_icon"
+                    src="static/img/ui_icon/home.svg">
+                <span onclick="redir('index.html')" class="navbar_text">Start</span>
+            </div>
+            <div class="navbar_item" onclick="redir('current.html')">
+                <img onclick="redir('current.html')" class="ui_icon"
+                    src="static/img/ui_icon/current.svg">
+                <span onclick="redir('current.html')" class="navbar_text">Aktuelles</span>
+            </div>
+            <div class="navbar_item" onclick="redir('program.html')">
+                <img onclick="redir('program.html')" class="ui_icon"
+                    src="static/img/ui_icon/program.svg">
+                <span onclick="redir('program.html')" class="navbar_text">Programm</span>
+            </div>
+            <div class="navbar_item" onclick="redir('about.html')">
+                <img onclick="redir('about.html')" class="ui_icon"
+                    src="static/img/ui_icon/what.svg">
+                <span onclick="redir('about.html')" class="navbar_text">Was ist Jungschar?</span>
+            </div>
+            <div class="navbar_item" onclick="redir('photos.html')">
+                <img onclick="redir('photos.html')" class="ui_icon"
+                    src="static/img/ui_icon/photos.svg">
+                <span onclick="redir('photos.html')" class="navbar_text">Fotos</span>
+            </div>
+            <div class="navbar_item" onclick="redir('camps.html')">
+                <img onclick="redir('camps.html')" class="ui_icon"
+                    src="static/img/ui_icon/camps.svg">
+                <span onclick="redir('camps.html')" class="navbar_text">Lager</span>
+            </div>
+            <div class="navbar_item" onclick="redir('leiterteam.html')">
+                <img onclick="redir('leiterteam.html')" class="ui_icon"
+                    src="static/img/ui_icon/team.svg">
+                <span onclick="redir('leiterteam.html')" class="navbar_text">Leiterteam</span>
+            </div>
+            <div class="navbar_item" onclick="redir('contact.html')">
+                <img onclick="redir('contact.html')" class="ui_icon"
+                    src="static/img/ui_icon/contact.svg">
+                <span onclick="redir('contact.html')" class="navbar_text">Kontakt</span>
+            </div>
+            <div class="navbar_item" onclick="redir('zuckerwatte.html')">
+                <img onclick="redir('zuckerwatte.html')" class="ui_icon"
+                    src="static/img/ui_icon/zuckerwatte.svg">
+                <span onclick="redir('zuckerwatte.html')" class="navbar_text">Zuckerwattemaschine
+                    Mieten</span>
+            </div>
+        </div>
+
+    </div>
+    <div id="content">
+        <p class="spaceholder_medium"></p>
+<h1 style="color:white!important;">Seite nicht gefunden</h1>
+<p style="color:white!important;">Es tut uns leid, aber diese Seite konnte nicht gefunden werden...</p>
+<p class="spaceholder_small"></p>
+
+        <div id="footer" class="tintable">
+            <div class="line" style="width:92vw;"></div>
+            <p>Zuletzt aktualisiert am 18. Dezember 2025</p>
+            <div id="info" class="tintable">
+                <div id="hello" class="tintable">
+                    <strong>Hey du!</strong>
+                    <p>Wir freuen uns auf Deinen Besuch am nächsten Jungscharnachmittag… 😉</p>
+                    <strong onclick="redir('contact.html')" style="cursor: pointer;">Kontaktiere
+                        uns!</strong>
+                    <br>
+                    <br>
+                    <i>Jungschar Arcus</i>
+                </div>
+                <div id="adress" class="tintable">
+                    <strong>Unsere Adresse</strong>
+                    <br>
+                    <a href="https://www.buempliz.refbern.ch/">Reformierte Kirche Bümpliz</a>
+                    <p>Bernstrasse 85</p>
+                    <p>3018 Bern - Bümpliz</p>
+                    <br>
+                    <a
+                        href="https://www.google.com/maps/place/Reformierte+Kirche+B%C3%BCmpliz/@46.9406872,7.3920721,218m/data=!3m1!1e3!4m6!3m5!1s0x478e3921e605cac1:0x2fcb4a5a49172980!8m2!3d46.9407196!4d7.3924943!16s%2Fg%2F1hf1nf7p7?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D">Google
+                        maps</a>
+                </div>
+                <div id="map" class="tintable">
+                    <strong>Karte</strong>
+                    <div id="location_map"></div>
+                </div>
+            </div>
+            <div class="centered tintable">
+                <p>Developed with ❤️ by sossinaydev © JS-Arcus, 2025-2026</p>
+                <a href="https://github.com/JS-Arcus/js-arcus.github.io" class="nospace">View source on GitHub</a>
+                <!-- <br><a class="nospace" href="contact.html">Impressum</a> -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

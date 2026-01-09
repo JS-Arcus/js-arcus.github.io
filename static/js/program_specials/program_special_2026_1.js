@@ -15,9 +15,9 @@ function download_file(file_name, display) {
 }
 
 function download_ical() {
-    download_file("semesters/2026-1/ical.ics", "js_arcus_termine_levelup.ics")
+    download_file("semesters/2026-1/ical.ics", "js_arcus_termine_irrenhaus.ics")
 }
 
 function download_pdf() {
-    download_file("semesters/2026-1/print.pdf", "js_arcus_semesterprogramm_levelup.pdf")
+    download_file("semesters/2026-1/print.pdf", "js_arcus_semesterprogramm_irrenhaus.pdf")
 }

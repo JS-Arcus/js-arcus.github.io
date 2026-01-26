@@ -1,0 +1,13 @@
+h1 {
+    font-size: 600%;
+    line-height: 0.7;
+    color: white !important;
+}
+
+p,a,strong,h2,h3,h4,h5,h6,span {
+    color: white !important;
+}
+
+html body div.tintable {
+    background-color: #2B4216 !important;
+}

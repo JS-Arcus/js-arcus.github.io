@@ -390,6 +390,10 @@ button.no_space {
     transition: all 300ms ease-in-out
 }
 
+.transition #map * {
+    transition: none 0ms ease !important;
+}
+
 .fake_inverted img.ui_icon {
     filter: invert(0) !important;
 }
@@ -600,6 +604,38 @@ div.centered {
 
 .leiter_info span {
     margin: 0 !important;
+}
+
+html body div.campbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 4vh !important;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    background-color: white;
+}
+html body div.campbar * {
+    text-decoration: none;
+    color: black;
+}
+html body div.campbar span {
+    margin-right: 2vw;
+    margin-left: 2vw;
+}
+
+html body.inverted div.campbar * {
+    color: white;
+}
+html body.fake_inverted div.campbar * {
+    color: white;
+}
+
+html body.inverted div.campbar{
+    text-decoration: none;
+    background-color: black;
 }
 
 

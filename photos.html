@@ -95,21 +95,25 @@
     <h2 id="current_gallery_title"></h2>
     <br>
     <div id="gallery">
-        
+
     </div>
     <div id="overlay">
+        <div id="top_image_controls">
+            <!-- <img src="/static/img/ui_icon/star.svg" onclick='toggle_fav()'> -->
+            <img src="/static/img/ui_icon/close.svg" onclick='document.getElementById("overlay").style.display = "none"'>
+        </div>
         <img id="big_image" onclick='document.getElementById("overlay").style.display = "none"'>
         <div class="horizontal_container" id="image_controls">
-            <img src="static/img/ui_icon/left.svg" onclick="prev_image()">
-            <img src="static/img/ui_icon/download.svg" onclick="download_image()">
-            <img src="static/img/ui_icon/right.svg" onclick="next_image()">
+            <img src="/static/img/ui_icon/left.svg" onclick="prev_image()">
+            <img src="/static/img/ui_icon/download.svg" onclick="download_image()">
+            <img src="/static/img/ui_icon/right.svg" onclick="next_image()">
         </div>
     </div>
     <img id="i1">
 </div>
         <div id="footer" class="tintable">
             <div class="line" style="width:92vw;"></div>
-            <p>Zuletzt aktualisiert am 08. November 2025</p>
+            <p>Zuletzt aktualisiert am 12. Februar 2026</p>
             <div id="info" class="tintable">
                 <div id="hello" class="tintable">
                     <strong>Hey du!</strong>

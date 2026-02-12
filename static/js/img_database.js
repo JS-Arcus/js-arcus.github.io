@@ -312,7 +312,9 @@ async function next_image() {
 
     document.getElementById("overlay").style.display = "flex";
     const controls = document.getElementById("image_controls");
+    const tcontrols = document.getElementById("top_image_controls");
     if (controls) controls.style.display = "none";
+    if (tcontrols) tcontrols.style.display = "none";
 
     var bigimg = document.getElementById("big_image");
     bigimg.src = "static/img/ui_icon/loading_progress.svg";
@@ -350,6 +352,7 @@ async function next_image() {
     bigimg.style.height = "";
 
     if (controls) controls.style.display = ""; // Show controls after loading
+    if (tcontrols) tcontrols.style.display = ""; // Show controls after loading
 
     nextImage.scrollIntoView({ behavior: "smooth" });
 }
@@ -368,7 +371,9 @@ async function prev_image() {
 
     document.getElementById("overlay").style.display = "flex";
     const controls = document.getElementById("image_controls");
+    const tcontrols = document.getElementById("top_image_controls");
     if (controls) controls.style.display = "none";
+    if (tcontrols) tcontrols.style.display = "none";
 
     var bigimg = document.getElementById("big_image");
     bigimg.src = "static/img/ui_icon/loading_progress.svg";
@@ -406,6 +411,7 @@ async function prev_image() {
     bigimg.style.height = "";
 
     if (controls) controls.style.display = ""; // Show controls after loading
+    if (controls) tcontrols.style.display = ""; // Show controls after loading
 
     nextImage.scrollIntoView({ behavior: "smooth" });
 }

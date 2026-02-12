@@ -133,12 +133,17 @@ img#background {
 }
 
 .horizontal_container {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     padding-left: 3vw !important;
     flex-direction: row !important;
     justify-content: left !important;
-    align-items: center !important;
+    align-items: center;
     margin-left: 0 !important;
     margin-right: 0 !important;
+    height: 5% !important;
 }
 
 strong {
@@ -273,6 +278,7 @@ img.content_img.medium {
 }
 
 .horizontal_container * {
+    height: 80%;
     margin-left: 0.5vw !important;
     margin-right: 0.5vw !important;
 }
@@ -544,6 +550,36 @@ div.centered {
     background-color: rgb(0, 0, 0);
 }
 
+/* #top_image_controls {
+    padding: 0 !important;
+    width: 100%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: right !important;
+    background-color: rgb(0, 0, 0);
+    margin-top: 0 !important;
+} */
+
+#top_image_controls {
+    top: 0;
+    left: 0;
+    position: fixed;
+    padding: 0 !important;
+    width: 100%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: right !important;
+    background-color: rgb(0, 0, 0);
+    margin-top: 0 !important;
+}
+
+#top_image_controls img {
+    margin-left: 0 !important;
+    height: 80%;
+}
+
 #overlay .horizontal_container img {
     margin-left: auto !important;
     margin-right: auto !important;
@@ -553,7 +589,7 @@ div.centered {
     border-radius: 15px;
     object-fit: contain;
     width: 100%;
-    height: 95%;
+    height: 90%;
 }
 
 .img {
@@ -638,8 +674,17 @@ html body.inverted div.campbar{
     background-color: black;
 }
 
+@media (min-width: 768px) {
+    .desktop-invis {
+        display: none !important;
+    }
+}
 
 @media (max-width: 768px) {
+    .mobile-invis {
+        display: none !important;
+    }
+
     .leiter_info p {
         margin-left: 4vw !important;
     }

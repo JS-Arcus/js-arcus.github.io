@@ -9,7 +9,7 @@ const observer = new IntersectionObserver((entries, obs) => {
     for (const entry of entries) {
         if (entry.isIntersecting) {
             const img = entry.target;
-            const src = img.dataset.src;
+            const src = img.dataset.src+".preview";
             const key = img.dataset.key;
             const loadId = parseInt(img.dataset.loadId);
 
@@ -29,7 +29,6 @@ const observer = new IntersectionObserver((entries, obs) => {
 
 
 async function save_password() {
-    console.log("Saved")
     let password = document.getElementById("password_input").value;
     const expirationTime = Date.now() + 2 * 60 * 60 * 1000; // 2 Hours
     const hashedPassword = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(password))))
@@ -38,7 +37,8 @@ async function save_password() {
     const data = { password: hashedPassword, expiresAt: expirationTime };
     localStorage.setItem("saved_password", JSON.stringify(data));
 
-    load_gallery("")
+    console.log("Saved");
+    load_gallery("");
 }
 
 async function decrypt_image(path, key, outputId, loadId, limit = true) {

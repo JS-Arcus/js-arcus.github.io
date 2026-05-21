@@ -4,5 +4,5 @@ function redir(location){
 }
 
 function logo_clicked(){
-    redir("index.html")
+    redir("/")
 }

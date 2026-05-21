@@ -171,6 +171,13 @@ strong {
     width: max-content;
 }
 
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .navbar_item {
     cursor: pointer;
     user-select: none;
@@ -281,6 +288,59 @@ img.content_img.medium {
     height: 80%;
     margin-left: 0.5vw !important;
     margin-right: 0.5vw !important;
+}
+
+#password_input {
+    height: 2vh;
+    width: 100%;
+}
+
+.hline {
+    width: 100% !important;
+    border-style: solid;
+    border-width: 0 0 2px 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#doclist{
+    padding: 10px 0 0 0 !important;
+    width: 92vw;
+    margin-left: 4vw !important;
+    border: black solid 2px;
+}
+#doclist i {
+    width: 20px !important;
+    margin: 0 !important;
+    padding-left: 45px;
+}
+.filelist_item {
+    border: #01378b solid 2px;
+    border-width: 2px 0 0 0;
+    height: 20px !important;
+    margin: 0;
+    padding: 10px 0 10px 0 !important;
+    width: 100%;
+    background-color: #eee;
+    display: flex;
+    flex-direction: row;
+    align-content: left;
+    vertical-align: middle;
+    justify-content: left;
+}
+.filelist_item img {
+    border-radius: 0 !important;
+    height: 20px !important;
+    width: 20px !important;
+    margin: 0 0 0 5px !important;
+    padding: 0 !important;
+    filter: invert(1);
+    background-color: transparent;
+}
+.filelist_item a {
+    color: #01378b;
+    margin: 0 0 0 20px !important;
 }
 
 input {
@@ -818,4 +878,8 @@ html body.inverted div.campbar{
     img.content_img {
         width: 90% !important;
     }
+}
+
+.hidden {
+    display: none !important;
 }

@@ -34,19 +34,34 @@ async function create_person(id) {
         const info_container = document.createElement("div");
         info_container.className = "leiter_info";
 
-        const labels = ["Name", "Geburtsjahr", "Beruf", "Hobbies", "Ausbildungen"];
+        const labels = ["Name", "Geburtsjahr", "f", "Beruf", "Hobbies", "Ausbildungen"];
         for (let i = 0; i < labels.length; i++) {
             const p = document.createElement("p");
+            let val = data[i + 1] || ""
 
             const strong = document.createElement("strong");
-            strong.textContent = labels[i] + ": ";
+            let a = labels[i];
+            if (a == "f") {
+                if (val.includes(",")) {
+                    a = "Funktionen im Verein";
+                }
+                else if (["", "-", " "].includes(val)) {
+                    a = "-";
+                }
+                else {
+                    a = "Funktion in Verein"
+                }
+            }
+            strong.textContent = a + ": ";
 
             const span = document.createElement("span");
-            span.textContent = data[i + 1] || "";
+            span.textContent = val;
 
-            p.appendChild(strong);
-            p.appendChild(span);
-            info_container.appendChild(p);
+            if (a != "-") {
+                p.appendChild(strong);
+                p.appendChild(span);
+                info_container.appendChild(p);
+            }
         }
 
         const p = document.createElement("p");
@@ -55,7 +70,7 @@ async function create_person(id) {
         strong.textContent = "Hesch gwüsst ";
 
         const span = document.createElement("span");
-        span.textContent = data[6].replace("Hesch gwüsst ", "") || "";
+        span.textContent = data[7].replace("Hesch gwüsst ", "") || "";
 
         p.appendChild(strong);
         p.appendChild(span);
@@ -108,7 +123,7 @@ async function load_people(scroll_to) {
         }
     });
     if (await waitForElement(scroll_to)) {
-        setTimeout(document.getElementById(scroll_to).scrollIntoView({ behavior: "smooth" }),500)
+        setTimeout(document.getElementById(scroll_to).scrollIntoView({ behavior: "smooth" }), 500)
         document.getElementById("header").scrollIntoView()
     }
 }

@@ -67,21 +67,30 @@
         </div>
 
     </div>
-    <div class="campbar tintable"><h1>Leiterbereich</h1></div>
+    
     <div id="content">
         <script src="/static/js/private/private_section.js"></script>
 
 <p class="spaceholder_small"></p>
 
-<div id="login">
-    <p>Bitte gib unten das Leiter-Passwort ein.</p>
-    <p><input id="password_input" class="nospace" onkeypress="if(event.key === 'Enter') try_login()"> <span
-            class="nospace" style="width: 2vw;"></span><button onclick="try_login()" class="nospace">Anmelden</button>
+<h1>Leiterbereich</h1>
+
+<div id="login" class="center">
+    <p>Bitte gib das Leiter-Passwort ein.</p>
+    <p class="nospace center" style="width: 30vw">
+        <br>
+        <input id="password_input" type="password" class="nospace" onkeypress="if(event.key === 'Enter') try_login()">
+        <br>
+        <button onclick="try_login()" class="nospace">Anmelden</button>
     </p>
 </div>
 
-<div id="main">
+<div id="main" class="hidden">
     <h2>Dokumente</h2>
+    <div id="doclist">
+        <i id="path">/</i>
+        
+    </div>
 </div>
     </div>
 </body>

@@ -154,7 +154,7 @@ async function load_gallery(path, priorityImageId = "") {
         document.getElementsByClassName("blocker")[0].hidden = true;
         document.getElementById("gallery_container").hidden = false;
 
-        fetch("https://raw.githubusercontent.com/JS-Arcus/js-arcus.github.io/refs/heads/main/static/image_database/database.bin")
+        fetch("https://sossinaydev.ch/static/jsa-img/database.bin")
             .then(response => response.arrayBuffer())
             .then(async encryptedData => {
                 if (thisLoadId !== currentGalleryLoadId) return; // Abort if outdated
@@ -247,7 +247,7 @@ async function load_gallery(path, priorityImageId = "") {
                         let obj = document.createElement("img");
                         obj.id = `photo-${element}`;
                         obj.dataset.src =
-                            "https://raw.githubusercontent.com/JS-Arcus/js-arcus.github.io/refs/heads/main/static/image_database/" +
+                            "https://sossinaydev.ch/static/jsa-img/" +
                             struct[element].replaceAll(" ", "%20");
                         obj.dataset.key = password;
                         obj.dataset.loadId = thisLoadId;

@@ -77,11 +77,11 @@ function download_file(file_name, display) {
 }
 
 function download_ical() {
-    download_file("semesters/2026-2/ical.ics", "js_arcus_termine_irrenhaus.ics")
+    download_file("semesters/2026-2/ical.ics", "js_arcus_termine_wilder_westen.ics")
 }
 
 function download_pdf() {
-    download_file("semesters/2026-2/print.pdf", "js_arcus_semesterprogramm_irrenhaus.pdf")
+    download_file("semesters/2026-2/print.pdf", "js_arcus_semesterprogramm_wilder_westen.pdf")
 }
 
 let tumbleweeds = [];
@@ -104,7 +104,7 @@ function spawn_tumble() {
     };
     tw["av"] = tw.mx * (Math.random() / 2 + 0.75) / 100;
 
-    if (Math.random() > 0.9) { tw.i = gold_image };
+    if (Math.random() > 0.99) { tw.i = gold_image };
 
     tumbleweeds.push(tw);
     ticks_since_last_spawn = 0;
@@ -139,9 +139,9 @@ function tumble() {
         ctx.restore();
     });
     ticks_since_last_spawn++;
-    if (ticks_since_last_spawn > 500 && Math.random() > 0.99) {
+    if (ticks_since_last_spawn > 100 && Math.random() > 0.99) {
         for (let i = 0; i < Math.ceil(Math.random() * 2); i++) {
-            setTimeout(spawn_tumble, Math.random() * 2000);
+            setTimeout(spawn_tumble, Math.random() * 5000);
         }
     };
 }

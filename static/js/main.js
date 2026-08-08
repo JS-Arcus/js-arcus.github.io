@@ -146,4 +146,16 @@ function init_main() {
     });
 }
 
+function scroll_to_hash() {
+    let hash = decodeURIComponent(document.location.hash.substring(1)).toLowerCase();
+    console.log(hash);
+    if (hash.length == 0){return}
+    document.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(header => {
+        if (header.textContent.toLowerCase() == hash || header.getAttribute("hash_data") == hash) {
+            header.scrollIntoView();
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", init_main);
+document.addEventListener("DOMContentLoaded", scroll_to_hash);
